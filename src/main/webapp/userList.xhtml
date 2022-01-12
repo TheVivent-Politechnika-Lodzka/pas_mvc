@@ -3,6 +3,7 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
                 template="./templates/MainTemplate.xhtml">
 
     <ui:define name="top">
@@ -12,7 +13,7 @@
             </a>
 
         </li>
-        <li class="breadcrumb-item active">${msg["menu.templates"]}</li>
+        <li class="breadcrumb-item active">${msg['userList.breadcrumb']}</li>
     </ui:define>
 
     <ui:define name="left">
@@ -23,16 +24,56 @@
     <ui:define name="content">
         <div class="container text-light" style="background: #00000088;">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 p-2">
                     <h:form action="userList.xhtml">
-                        <h:inputText id="search" value="#{userListBean.search}" />
-                        <h:commandButton value="#{msg['button.search']}" action="#{userListBean.findUsersByLogin}" />
+                        <div class="input-group text-dark form-floating">
+                            <h:inputText id="floatingSearch" class="form-control" placeholder="#{msg['userList.searchButton']}" value="#{userListBean.search}" />
+                            <label for="floatingSearch">#{msg['userList.searchButton']}</label>
+                            <h:commandButton class="btn btn-success" value="#{msg['userList.searchButton']}" action="#{userListBean.findUsersByLogin}" />
+                        </div>
                     </h:form>
 
                 </div>
             </div>
-            <div class="row">
-                #{userListBean.getUsersAsString()}
+            <div class="row text-dark">
+                <div class="col-12">
+                    <table class="table table-light table-stripped table-hover">
+                        <caption>${msg["userList.table.caption"]}</caption>
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">#{msg['userList.table.id']}</th>
+                                <th scope="col">#{msg['userList.table.login']}</th>
+                                <th scope="col">#{msg['userList.table.name']}</th>
+                                <th scope="col">#{msg['userList.table.activation']}</th>
+                                <th scope="col">#{msg['userList.table.edit']}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="user" items="#{userListBean.foundUsers}">
+                                <tr>
+                                    <th scope="row">${user.id}</th>
+                                    <td>${user.login}</td>
+                                    <td>${user.name} ${user.surname}</td>
+                                    <td>
+
+                                        <h:form>
+                                            #{user.active ? msg['userList.table.isActive'] : msg['userList.table.isNotActive']}
+
+                                            <h:commandButton
+                                                    class="btn btn-primary"
+                                                    action="#{userListBean.toggleUserActivation()}"
+                                                    value="#{user.active ? msg['userList.table.deactivate'] : msg['userList.table.activate']}"
+                                            />
+                                        </h:form>
+                                    </td>
+                                    <td>
+                                        <h:outputLink class="btn btn-primary" value="editUser.xhtml?id=${user.id}" >#{msg['userList.table.editButton']}</h:outputLink>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
