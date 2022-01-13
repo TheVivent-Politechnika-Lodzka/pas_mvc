@@ -50,31 +50,39 @@
                                 <th scope="col">#{msg['userList.table.id']}</th>
                                 <th scope="col">#{msg['userList.table.login']}</th>
                                 <th scope="col">#{msg['userList.table.name']}</th>
+                                <th scope="col">#{msg['userList.table.surname']}</th>
+                                <th scope="col">#{msg['userList.table.password']}</th>
                                 <th scope="col">#{msg['userList.table.activation']}</th>
                                 <th scope="col">#{msg['userList.table.edit']}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="user" items="#{userListBean.foundUsers}">
-                                <tr style="height: 7em" class="text">
-                                    <th scope="row">${user.id}</th>
-                                    <td>${user.login}</td>
-                                    <td>${user.name} ${user.surname}</td>
-                                    <td>
+                                <tr class="text">
+                                    <h:form>
 
-                                        <h:form>
-                                            #{user.active ? msg['userList.table.isActive'] : msg['userList.table.isNotActive']}
+                                        <th scope="row">
+                                            <h:outputText value="#{user.id}"/>
+                                        </th>
+                                        <td>${user.login}</td>
+                                        <td>${user.name}</td>
+                                        <td>${user.surname}</td>
+                                        <td>${user.password}</td>
+                                        <td>
 
-                                            <h:commandButton
-                                                    class="btn btn-primary"
-                                                    action="#{userListBean.toggleUserActivation()}"
-                                                    value="#{user.active ? msg['userList.table.deactivate'] : msg['userList.table.activate']}"
-                                            />
-                                        </h:form>
-                                    </td>
-                                    <td>
-                                        <h:outputLink class="btn btn-primary" value="editUser.xhtml?id=${user.id}" >#{msg['userList.table.editButton']}</h:outputLink>
-                                    </td>
+                                                #{user.active ? msg['userList.table.isActive'] : msg['userList.table.isNotActive']}
+
+                                                <h:commandButton
+                                                        class="btn btn-primary"
+                                                        action="#{userListBean.toggleUserActivation(user)}"
+                                                        value="#{user.active ? msg['userList.table.deactivate'] : msg['userList.table.activate']}"
+                                                />
+                                        </td>
+                                        <td>
+                                            <h:commandButton class="btn btn-success" action="#{userListBean.save(user)}" value="test"/>
+<!--                                            <h:outputLink class="btn btn-primary" value="editUser.xhtml?id=${user.id}" >#{msg['userList.table.editButton']}</h:outputLink>-->
+                                        </td>
+                                    </h:form>
                                 </tr>
                             </c:forEach>
                         </tbody>

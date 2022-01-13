@@ -11,9 +11,12 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
 import java.io.Serializable;
@@ -22,9 +25,13 @@ import java.util.List;
 import java.util.UUID;
 
 @Named
-@RequestScoped
+@ViewScoped
+@ManagedBean
 @NoArgsConstructor
 public class UserListBean implements Serializable {
+
+    private HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    private HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 
     @Getter @Setter
     private String search = "";
@@ -32,24 +39,38 @@ public class UserListBean implements Serializable {
     @Getter @Setter
     private List<Client> foundUsers;
 
+    @Getter @Setter
+    private int test = 0;
+
+
+    @Getter @Setter
+    private String selectedId;
+
     @PostConstruct
     public void init() {
         findUsersByLogin();
+
     }
 
-    public void toggleUserActivation() {
-        // TODO nie wiem jak zrobić aktywowanie/deaktywowanie użytkownika
-        boolean isActive = false;
-        String userId = "random string";
-        return;
+    public void testPlus(){
+        test++;
+    }
 
-//        if (isActive) {
-//            client.target(URI.create("http://localhost:2137/api/user/deactivate/" + userId)).request().put(null);
-//        }
-//        else {
-//            client.target(URI.create("http://localhost:2137/api/user/activate/" + userId)).request().put(null);
-//        }
-//        findUsersByLogin();
+    public void save(Client user){
+
+    }
+
+    public void toggleUserActivation(Client user) {
+        boolean isActive = user.isActive();
+        String userId = user.getId().toString();
+
+        if (isActive) {
+            RestClient.client.target(URI.create("http://localhost:2137/api/user/deactivate/" + userId)).request().head();
+        }
+        else {
+            RestClient.client.target(URI.create("http://localhost:2137/api/user/activate/" + userId)).request().head();
+        }
+        findUsersByLogin();
     }
 
     public void updateSearch(AjaxBehaviorEvent event) {

@@ -13,11 +13,32 @@
             <li class="nav-item">
                 <h:outputLink class="nav-link" value="start.xhtml">PAS</h:outputLink>
             </li>
-            <li class="nav-item">
-                <h:outputLink class="nav-link" value="userList.xhtml">Użytkownicy</h:outputLink>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Użytkownicy
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarUserDropdown">
+                    <li>
+                        <h:outputLink class="dropdown-item" value="userList.xhtml">Lista</h:outputLink>
+                    </li>
+                    <li>
+                        <h:outputLink class="dropdown-item" value="userAdd.xhtml">Dodaj</h:outputLink>
+                    </li>
+                </ul>
+
             </li>
-            <li class="nav-item">
-                <h:outputLink class="nav-link" value="roomList.xhtml">Pokoje</h:outputLink>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarRoomDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Pokoje
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarRoomDropdown">
+                    <li>
+                        <h:outputLink class="dropdown-item" value="roomList.xhtml">Lista</h:outputLink>
+                    </li>
+                    <li>
+                        <h:outputLink class="dropdown-item" value="roomAdd.xhtml">Dodaj</h:outputLink>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <h:outputLink class="nav-link" value="reservationList.xhtml">Rezerwacje</h:outputLink>
