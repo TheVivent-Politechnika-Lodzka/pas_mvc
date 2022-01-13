@@ -23,12 +23,15 @@
 
 
     <ui:define name="content">
-        <div class="container text-light" style="background: #00000088;">
             <div class="row">
                 <div class="col-12 p-2">
-                    <h:form action="userList.xhtml">
-                        <div class="input-group text-dark form-floating">
-                            <h:inputText id="floatingSearch" class="form-control" placeholder="#{msg['userList.searchButton']}" value="#{userListBean.search}" />
+                    <h:form>
+                        <div class="text-dark form-floating input-group">
+                            <h:inputText id="floatingSearch" class="form-control"
+                                 placeholder="#{msg['userList.searchButton']}"
+                                 value="#{userListBean.search}"
+                            >
+                            </h:inputText>
                             <label for="floatingSearch">#{msg['userList.searchButton']}</label>
                             <h:commandButton value="#{msg['userList.searchButton']}"
                                             action="#{userListBean.findUsersByLogin()}"
@@ -40,8 +43,8 @@
             </div>
             <div class="row text-dark">
                 <div class="col-12">
-                    <table class="table table-light table-stripped table-hover">
-                        <caption>${msg["userList.table.caption"]}</caption>
+                    <table class="table align-middle table-light table-striped table-hover">
+                        <caption class="text-light">${msg["userList.table.caption"]}</caption>
                         <thead class="table-dark">
                             <tr>
                                 <th scope="col">#{msg['userList.table.id']}</th>
@@ -53,7 +56,7 @@
                         </thead>
                         <tbody>
                             <c:forEach var="user" items="#{userListBean.foundUsers}">
-                                <tr>
+                                <tr style="height: 7em" class="text">
                                     <th scope="row">${user.id}</th>
                                     <td>${user.login}</td>
                                     <td>${user.name} ${user.surname}</td>
@@ -79,7 +82,6 @@
                 </div>
             </div>
 
-        </div>
     </ui:define>
 
 </ui:composition>
