@@ -13,7 +13,7 @@ import java.util.UUID;
 public class HotelRoom {
 
     @EqualsAndHashCode.Include
-    @Getter
+    @Getter @Setter
     private UUID id;
 
     @Getter @Setter
