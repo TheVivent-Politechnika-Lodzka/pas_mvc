@@ -40,20 +40,11 @@ public class UserListBean implements Serializable {
     private List<Client> foundUsers;
 
     @Getter @Setter
-    private int test = 0;
-
-
-    @Getter @Setter
     private String selectedId;
 
     @PostConstruct
     public void init() {
         findUsersByLogin();
-
-    }
-
-    public void testPlus(){
-        test++;
     }
 
     public void save(Client user){
