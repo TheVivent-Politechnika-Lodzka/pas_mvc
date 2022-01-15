@@ -1,4 +1,4 @@
-package sample.web.jsf.jsfexamples.model;
+package sample.web.jsf.model;
 
 import lombok.*;
 

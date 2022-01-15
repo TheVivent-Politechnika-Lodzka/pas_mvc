@@ -31,11 +31,6 @@
             <from-outcome>editUser</from-outcome>
             <to-view-id>/editUser.xhtml</to-view-id>
         </navigation-case>
-<!--        <navigation-case>-->
-<!--            <from-outcome>redirectToNavigationTarget</from-outcome>-->
-<!--            <to-view-id>/navigationTarget.xhtml</to-view-id>-->
-<!--            <redirect />-->
-<!--        </navigation-case>-->
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/editUser.xhtml</from-view-id>

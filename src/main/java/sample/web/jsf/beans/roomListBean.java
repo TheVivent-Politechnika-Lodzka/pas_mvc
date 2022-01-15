@@ -1,9 +1,9 @@
-package sample.web.jsf.jsfexamples.beans;
+package sample.web.jsf.beans;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import sample.web.jsf.jsfexamples.model.HotelRoom;
-import sample.web.jsf.jsfexamples.utils.RestClient;
+import sample.web.jsf.model.HotelRoom;
+import sample.web.jsf.utils.RestClient;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;

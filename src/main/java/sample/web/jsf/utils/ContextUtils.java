@@ -1,8 +1,6 @@
 
-package sample.web.jsf.jsfexamples.utils;
+package sample.web.jsf.utils;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;

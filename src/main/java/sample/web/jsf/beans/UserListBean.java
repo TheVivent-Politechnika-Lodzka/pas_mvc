@@ -1,10 +1,10 @@
-package sample.web.jsf.jsfexamples.beans;
+package sample.web.jsf.beans;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sample.web.jsf.jsfexamples.model.User;
-import sample.web.jsf.jsfexamples.utils.RestClient;
+import sample.web.jsf.model.User;
+import sample.web.jsf.utils.RestClient;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -51,10 +51,12 @@ public class UserListBean implements Serializable {
         String userId = user.getId().toString();
 
         if (isActive) {
-            RestClient.client.target(URI.create("http://localhost:2137/api/user/deactivate/" + userId)).request().head();
+            RestClient.target("user/deactivate/" + userId).request().head();
+//            RestClient.client.target(URI.create("http://localhost:2137/api/user/deactivate/" + userId)).request().head();
         }
         else {
-            RestClient.client.target(URI.create("http://localhost:2137/api/user/activate/" + userId)).request().head();
+            RestClient.target("user/activate/" + userId).request().head();
+//            RestClient.client.target(URI.create("http://localhost:2137/api/user/activate/" + userId)).request().head();
         }
         findUsersByLogin();
     }

@@ -1,10 +1,10 @@
-package sample.web.jsf.jsfexamples.beans;
+package sample.web.jsf.beans;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sample.web.jsf.jsfexamples.model.User;
-import sample.web.jsf.jsfexamples.utils.RestClient;
+import sample.web.jsf.model.User;
+import sample.web.jsf.utils.RestClient;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;

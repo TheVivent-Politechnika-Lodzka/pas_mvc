@@ -1,11 +1,9 @@
-package sample.web.jsf.jsfexamples.model;
+package sample.web.jsf.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.util.UUID;
 
 //@Data

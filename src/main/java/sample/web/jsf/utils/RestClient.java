@@ -1,4 +1,4 @@
-package sample.web.jsf.jsfexamples.utils;
+package sample.web.jsf.utils;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.client.Client;
