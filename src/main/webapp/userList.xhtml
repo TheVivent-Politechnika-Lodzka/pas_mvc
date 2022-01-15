@@ -31,11 +31,10 @@
                                  placeholder="#{msg['userList.searchButton']}"
                                  value="#{userListBean.search}"
                             >
+                                <f:ajax event="keyup" listener="#{userListBean.ajaxHandler}" execute="@form" render="ajaxRender" />
                             </h:inputText>
                             <label for="floatingSearch">#{msg['userList.searchButton']}</label>
-                            <h:commandButton value="#{msg['userList.searchButton']}"
-                                            action="#{userListBean.findUsersByLogin()}"
-                                            class="btn btn-success"/>
+
                         </div>
                     </h:form>
 
@@ -56,13 +55,13 @@
                                 <th scope="col">#{msg['userList.table.edit']}</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="ajaxRender">
                             <c:forEach var="user" items="#{userListBean.foundUsers}">
                                 <tr class="text">
                                     <h:form>
 
                                         <th scope="row">
-                                            <h:outputText value="#{user.id}"/>
+                                            ${user.id}
                                         </th>
                                         <td>${user.login}</td>
                                         <td>${user.name}</td>
