@@ -36,7 +36,7 @@ public class Reservation {
         this.id = reservation.getId();
         this.startDate = reservation.getStartDate();
         this.endDate = reservation.getEndDate();
-        this.user = reservation.getUser().copy();
+        this.user = reservation.getUser();
         this.hotelRoom = new HotelRoom(reservation.getHotelRoom());
     }
 

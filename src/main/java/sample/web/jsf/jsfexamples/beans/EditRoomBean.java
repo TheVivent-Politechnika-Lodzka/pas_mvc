@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 @Named
 @RequestScoped
 @NoArgsConstructor
-public class editRoomBean {
+public class EditRoomBean {
 
     private HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     private HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();

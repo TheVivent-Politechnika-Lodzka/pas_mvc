@@ -11,38 +11,38 @@ import java.util.UUID;
 //@Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-abstract public class User<T extends User<T>>{
+public class User{
 
     @EqualsAndHashCode.Include
     @Getter @Setter
     private UUID id;
 
     @Getter @Setter
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]{3,20}$", message = "Login must be 3-20 characters long and contain only letters and numbers")
     private String login;
 
     @Getter @Setter
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9]{3,20}$", message = "Password must be 3-20 characters long and contain only letters and numbers")
     private String password;
 
     @Getter @Setter
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z]{3,20}$", message = "First name must be 3-20 characters long and contain only letters")
     private String name;
 
     @Getter @Setter
-    @NotBlank
-    @Pattern(regexp = "^[a-zA-Z]{3,20}$", message = "Last name must be 3-20 characters long and contain only letters")
     private String surname;
 
     @Getter @Setter
     private boolean isActive = true;
 
-    @Getter @Setter
-    @JsonIgnore
+
     private int permissionLevel;
+
+    @JsonIgnore
+    public int getPermissionLevel() {
+        return permissionLevel;
+    }
+
+    public void setPermissionLevel(int permissionLevel) {
+        this.permissionLevel = permissionLevel;
+    }
 
 
     public User(UUID id, String login, String password, String name, String surname) {
@@ -61,9 +61,5 @@ abstract public class User<T extends User<T>>{
         this.surname = user.getSurname();
         this.isActive = user.isActive();
     }
-
-    abstract public T copy();
-
-    abstract public int getPermissionLevel();
 
 }

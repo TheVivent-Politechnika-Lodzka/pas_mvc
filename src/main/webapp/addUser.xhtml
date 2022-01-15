@@ -27,12 +27,12 @@
             <div class="row">
                 <div class="col-12">
                     <h:form>
-                        ${editUserBean.user.id}
-                        <h:inputText value="${editUserBean.user.login}" />
-                        <h:inputText value="${editUserBean.user.name}" />
-                        <h:inputText value="${editUserBean.user.surname}" />
+                        <h:inputText value="${addUserBean.user.login}" />
+                        <h:inputText value="${addUserBean.user.name}" />
+                        <h:inputText value="${addUserBean.user.surname}" />
+                        <h:inputText value="${addUserBean.user.password}" />
 
-                        <h:commandButton value="${msg['editUser.button']}" action="#{editUserBean.save}" />
+                        <h:commandButton value="${msg['editUser.button']}" action="#{addUserBean.save}" />
                     </h:form>
                 </div>
             </div>

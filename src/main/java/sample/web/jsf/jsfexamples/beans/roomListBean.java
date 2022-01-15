@@ -2,7 +2,6 @@ package sample.web.jsf.jsfexamples.beans;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import sample.web.jsf.jsfexamples.model.Client;
 import sample.web.jsf.jsfexamples.model.HotelRoom;
 import sample.web.jsf.jsfexamples.utils.RestClient;
 

@@ -66,7 +66,7 @@
                                         <td>${user.login}</td>
                                         <td>${user.name}</td>
                                         <td>${user.surname}</td>
-                                        <td>${user.password}</td>
+                                        <td>${user.permissionLevel}</td>
                                         <td>
 
                                                 #{user.active ? msg['userList.table.isActive'] : msg['userList.table.isNotActive']}
@@ -78,8 +78,11 @@
                                                 />
                                         </td>
                                         <td>
-<!--                                            <h:commandButton class="btn btn-success" action="#{userListBean.save(user)}" value="test"/>-->
-                                            <h:outputLink class="btn btn-primary" value="editUser.xhtml?id=${user.id}" >#{msg['userList.table.editButton']}</h:outputLink>
+                                            <h:commandButton
+                                                    class="btn btn-primary"
+                                                    action="#{userListBean.editUser(user)}"
+                                                    value="#{msg['userList.table.edit']}"
+                                            />
                                         </td>
                                     </h:form>
                                 </tr>

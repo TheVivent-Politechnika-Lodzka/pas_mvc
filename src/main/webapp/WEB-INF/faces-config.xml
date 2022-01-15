@@ -21,16 +21,27 @@
             i18n.jsf_messages
         </message-bundle>
     </application>
+
+
+
+
     <navigation-rule>
-        <from-view-id>/navigation.xhtml</from-view-id>
+        <from-view-id>/userList.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>forwardToNavigationTarget</from-outcome>
-            <to-view-id>/navigationTarget.xhtml</to-view-id>
+            <from-outcome>editUser</from-outcome>
+            <to-view-id>/editUser.xhtml</to-view-id>
         </navigation-case>
+<!--        <navigation-case>-->
+<!--            <from-outcome>redirectToNavigationTarget</from-outcome>-->
+<!--            <to-view-id>/navigationTarget.xhtml</to-view-id>-->
+<!--            <redirect />-->
+<!--        </navigation-case>-->
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/editUser.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>redirectToNavigationTarget</from-outcome>
-            <to-view-id>/navigationTarget.xhtml</to-view-id>
-            <redirect />
+            <from-outcome>userList</from-outcome>
+            <to-view-id>/userList.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
