@@ -9,9 +9,8 @@
     <ui:define name="top">
         <li class="breadcrumb-item">
             <a href="start.xhtml">
-                ${msg["main.page"]}
+                ${msg["start.breadcrumb"]}
             </a>
-
         </li>
         <li class="breadcrumb-item active">${msg['roomList.breadcrumb']}</li>
     </ui:define>
@@ -39,16 +38,18 @@
                         </thead>
                         <tbody>
                             <c:forEach var="room" items="#{roomListBean.roomList}">
-                                <tr>
-                                    <th scope="row">${room.id}</th>
-                                    <td>${room.roomNumber}</td>
-                                    <td>${room.description}</td>
-                                    <td>${room.capacity}</td>
-                                    <td>${room.price}</td>
-                                    <td>
-                                        <h:outputLink class="btn btn-primary" value="editRoom.xhtml?id=${room.id}" >#{msg['roomList.table.editButton']}</h:outputLink>
-                                    </td>
-                                </tr>
+                                <h:form>
+                                    <tr>
+                                        <th scope="row">${room.id}</th>
+                                        <td>${room.roomNumber}</td>
+                                        <td>${room.description}</td>
+                                        <td>${room.capacity}</td>
+                                        <td>${room.price}</td>
+                                        <td>
+                                            <h:commandButton class="btn btn-success" action="#{roomListBean.editRoom(room)}" value="#{msg['roomList.table.editButton']}" />
+                                        </td>
+                                    </tr>
+                                </h:form>
                             </c:forEach>
                         </tbody>
                     </table>

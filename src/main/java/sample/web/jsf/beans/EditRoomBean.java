@@ -8,77 +8,37 @@ import sample.web.jsf.utils.RestClient;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
+import java.io.Serializable;
 
 @Named
-@RequestScoped
+@SessionScoped
 @NoArgsConstructor
-public class EditRoomBean {
+public class EditRoomBean implements Serializable {
 
-    private HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    private HttpServletResponse res = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-
-    @Getter
-    private HotelRoom room = null;
 
     @Getter @Setter
-    private String roomId = null;
+    private HotelRoom room;
 
-    @Getter @Setter
-    private int number;
-
-    @Getter @Setter
-    private int price;
-
-    @Getter @Setter
-    private int capacity;
-
-    @Getter @Setter
-    private String description;
-
-    @PostConstruct
-    public void init() {
-        getRoom();
-        if (room != null) {
-            loadFromRoom();
+    public String save() {
+        if (room == null) {
+            throw new IllegalStateException("Proba ominiecia listy");
         }
-    }
 
-    public void save() {
+        Response res = RestClient.target("room/" + room.getId().toString()).request().post(Entity.json(room));
+        room = null;
 
-        HotelRoom roomToSend = new HotelRoom();
-        roomToSend.setRoomNumber(number);
-        roomToSend.setPrice(price);
-        roomToSend.setCapacity(capacity);
-        roomToSend.setDescription(description);
-
-
-
-        Response response = RestClient.client.target("http://localhost:2137/api/room/" + roomId)
-                .request().post(Entity.json(roomToSend));
-    }
-
-    private void getRoom() {
-        String id = req.getParameter("id");
-        try {
-            room = RestClient.client.target("http://localhost:2137/api/room/" + id).request().get(HotelRoom.class);
+        if (res.getStatus() != 200) {
+            throw new IllegalStateException("Nie udało się zapisać pokoju");
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    private void loadFromRoom() {
-        roomId = room.getId().toString();
-        number = room.getRoomNumber();
-        price = room.getPrice();
-        capacity = room.getCapacity();
-        description = room.getDescription();
+        return "roomList";
     }
 
 

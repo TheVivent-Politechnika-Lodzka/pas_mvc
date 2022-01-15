@@ -10,9 +10,8 @@
     <ui:define name="top">
         <li class="breadcrumb-item">
             <a href="start.xhtml">
-                ${msg["main.page"]}
+                ${msg["start.breadcrumb"]}
             </a>
-
         </li>
         <li class="breadcrumb-item active">${msg['userList.breadcrumb']}</li>
     </ui:define>
@@ -81,7 +80,7 @@
                                             <h:commandButton
                                                     class="btn btn-primary"
                                                     action="#{userListBean.editUser(user)}"
-                                                    value="#{msg['userList.table.edit']}"
+                                                    value="#{msg['userList.table.editButton']}"
                                             />
                                         </td>
                                     </h:form>

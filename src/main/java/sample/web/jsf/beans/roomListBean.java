@@ -7,6 +7,7 @@ import sample.web.jsf.utils.RestClient;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.core.GenericType;
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 public class roomListBean {
 
+    @Inject
+    private EditRoomBean editRoomBean;
 
     @Getter
     private List<HotelRoom> roomList;
@@ -25,8 +28,13 @@ public class roomListBean {
         getAllRooms();
     }
 
+    public String editRoom(HotelRoom room){
+        editRoomBean.setRoom(room);
+        return "editRoom";
+    }
+
     public void getAllRooms() {
-        roomList = RestClient.client.target("http://localhost:2137/api/room/all").request().get(new GenericType<List<HotelRoom>>() {});
+        roomList = RestClient.target("room/all").request().get(new GenericType<List<HotelRoom>>() {});
     }
 
 }

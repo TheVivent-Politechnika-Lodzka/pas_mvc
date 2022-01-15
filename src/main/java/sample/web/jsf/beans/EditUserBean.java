@@ -25,7 +25,7 @@ public class EditUserBean implements Serializable {
             throw new IllegalStateException("Proba ominiecia listy");
         }
 
-        Response res = RestClient.client.target("http://localhost:2137/api/user/" + user.getId().toString()).request().post(Entity.json(user));
+        Response res = RestClient.target("user/" + user.getId().toString()).request().post(Entity.json(user));
         user = null;
 
         if (res.getStatus() != 200) {

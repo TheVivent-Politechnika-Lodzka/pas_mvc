@@ -52,11 +52,9 @@ public class UserListBean implements Serializable {
 
         if (isActive) {
             RestClient.target("user/deactivate/" + userId).request().head();
-//            RestClient.client.target(URI.create("http://localhost:2137/api/user/deactivate/" + userId)).request().head();
         }
         else {
             RestClient.target("user/activate/" + userId).request().head();
-//            RestClient.client.target(URI.create("http://localhost:2137/api/user/activate/" + userId)).request().head();
         }
         findUsersByLogin();
     }
@@ -64,10 +62,10 @@ public class UserListBean implements Serializable {
     public void findUsersByLogin() {
 
         if (search.isEmpty()) {
-            foundUsers = RestClient.client.target(URI.create("http://localhost:2137/api/user/all")).request().get(new GenericType<List<User>>() {});
+            foundUsers = RestClient.target("user/all").request().get(new GenericType<List<User>>() {});
         }
         else {
-            foundUsers = RestClient.client.target(URI.create("http://localhost:2137/api/user/search/" + search)).request().get(new GenericType<List<User>>() {});
+            foundUsers = RestClient.target("user/search/" + search).request().get(new GenericType<List<User>>() {});
         }
 
     }

@@ -4,6 +4,7 @@ package sample.web.jsf.beans;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import sample.web.jsf.model.HotelRoom;
 import sample.web.jsf.model.User;
 import sample.web.jsf.utils.RestClient;
 
@@ -15,20 +16,17 @@ import javax.ws.rs.client.Entity;
 @Named
 @RequestScoped
 @NoArgsConstructor
-public class AddUserBean {
+public class AddRoomBean {
 
     @Getter
-    User user = new User();
+    private HotelRoom room = new HotelRoom();
 
-    @PostConstruct
-    public void init() {
-        user = new User();
-    }
+
 
     public void save() {
-        RestClient.target("user/create").request().post(Entity.json(user));
-        // TODO dodać przekierowanie do potwierdzenia
-        // return "userConfirm";
+        RestClient.target("room").request().post(Entity.json(room));
+        // TODO dodać jakieś przekierowanie do potwierdzenia
+        // return "roomConfirm";
     }
 
 }

@@ -9,9 +9,13 @@
     <ui:define name="top">
         <li class="breadcrumb-item">
             <a href="start.xhtml">
-                ${msg["main.page"]}
+                ${msg["start.breadcrumb"]}
             </a>
-
+        </li>
+        <li class="breadcrumb-item">
+            <a href="roomList.xhtml">
+                ${msg["roomList.breadcrumb"]}
+            </a>
         </li>
         <li class="breadcrumb-item active">${msg['editRoom.breadcrumb']}</li>
     </ui:define>
@@ -26,13 +30,43 @@
 
             <div class="row">
                 <div class="col-12">
-                    <h:form>
-                        <h:inputText value="${editRoomBean.roomId}" />
-                        <h:inputText value="${editRoomBean.number}" />
-                        <h:inputText value="${editRoomBean.price}" />
-                        <h:inputText value="${editRoomBean.capacity}" />
-                        <h:inputTextarea value="${editRoomBean.description}" />
-                        <h:commandButton value="${msg['editRoom.saveButton']}" action="#{editRoomBean.save}" />
+                    <h:form class="text-dark">
+                        <div class="container-fluid">
+                            <div class="row mt-3">
+                                <div class="col-12 text-light">
+                                    <h3>${msg['editRoom.title']}: #{editRoomBean.room.id}</h3>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-floating mb-3">
+                                        <h:inputText class="form-control" id="roomNumber" placeholder="${msg['editRoom.number']}" value="#{editRoomBean.room.roomNumber}"/>
+                                        <label for="roomNumber">${msg['addRoom.number']}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-floating mb-3">
+                                        <h:inputText class="form-control" id="roomPrice" placeholder="${msg['editRoom.price']}" value="#{editRoomBean.room.price}"/>
+                                        <label for="roomPrice">${msg['editRoom.price']}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-floating mb-3">
+                                        <h:inputText class="form-control" id="roomCapacity" placeholder="${msg['editRoom.capacity']}" value="#{editRoomBean.room.capacity}"/>
+                                        <label for="roomCapacity">${msg['editRoom.capacity']}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        <h:inputTextarea class="form-control" id="roomDescription" placeholder="${msg['editRoom.description']}" value="#{editRoomBean.room.description}"/>
+                                        <label for="roomDescription">${msg['editRoom.description']}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <h:commandButton class="btn btn-success" value="${msg['editRoom.saveButton']}" action="#{editRoomBean.save}" />
+                                </div>
+                            </div>
+                        </div>
                     </h:form>
                 </div>
             </div>

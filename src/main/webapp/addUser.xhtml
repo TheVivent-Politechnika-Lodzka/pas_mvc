@@ -9,11 +9,10 @@
     <ui:define name="top">
         <li class="breadcrumb-item">
             <a href="start.xhtml">
-                ${msg["main.page"]}
+                ${msg["start.breadcrumb"]}
             </a>
-
         </li>
-        <li class="breadcrumb-item active">${msg['editRoom.breadcrumb']}</li>
+        <li class="breadcrumb-item active">${msg['addUser.breadcrumb']}</li>
     </ui:define>
 
     <ui:define name="left">
@@ -26,13 +25,48 @@
 
             <div class="row">
                 <div class="col-12">
-                    <h:form>
-                        <h:inputText value="${addUserBean.user.login}" />
-                        <h:inputText value="${addUserBean.user.name}" />
-                        <h:inputText value="${addUserBean.user.surname}" />
-                        <h:inputText value="${addUserBean.user.password}" />
+                    <h:form class="text-dark">
+                        <div class="container-fluid">
+                            <div class="row mt-3">
+                                <div class="col-12 col-md-4">
+                                    <div class="form-floating mb-3">
+                                        <h:inputText class="form-control" id="userLogin" placeholder="${msg['addUser.login']}" value="#{addUserBean.user.login}"/>
+                                        <label for="userLogin">${msg['addUser.login']}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-floating mb-3">
+                                        <h:inputText class="form-control" id="userName" placeholder="${msg['addUser.name']}" value="#{addUserBean.user.name}"/>
+                                        <label for="userName">${msg['addUser.name']}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-floating mb-3">
+                                        <h:inputText class="form-control" id="userSurname" placeholder="${msg['addUser.surname']}" value="#{addUserBean.user.surname}"/>
+                                        <label for="userSurname">${msg['addUser.surname']}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <h:inputText class="form-control" id="userPassword" placeholder="${msg['addUser.password']}" value="#{addUserBean.user.password}"/>
+                                        <label for="userPassword">${msg['addUser.password']}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <h:inputText class="form-control" id="userPasswordConfirm" placeholder="${msg['addUser.passwordConfirm']}" value="#{addUserBean.user.password}"/>
+                                        <label for="userPasswordConfirm">${msg['addUser.passwordConfirm']}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                        <h:commandButton value="${msg['editUser.button']}" action="#{addUserBean.save}" />
+
+                        <div class="container-fluid"></div>
+
+                        <h:commandButton class="btn btn-success" value="${msg['addUser.button']}" action="#{addUserBean.save}" />
                     </h:form>
                 </div>
             </div>
