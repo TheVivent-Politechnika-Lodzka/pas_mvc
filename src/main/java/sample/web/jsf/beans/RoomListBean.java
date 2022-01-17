@@ -15,7 +15,7 @@ import java.util.List;
 @Named
 @RequestScoped
 @NoArgsConstructor
-public class roomListBean {
+public class RoomListBean {
 
     @Inject
     private EditRoomBean editRoomBean;
