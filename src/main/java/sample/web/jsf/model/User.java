@@ -30,7 +30,6 @@ public class User{
     @Getter @Setter
     private boolean isActive = true;
 
-
     private int permissionLevel;
 
     @JsonIgnore
@@ -40,24 +39,6 @@ public class User{
 
     public void setPermissionLevel(int permissionLevel) {
         this.permissionLevel = permissionLevel;
-    }
-
-
-    public User(UUID id, String login, String password, String name, String surname) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-    }
-
-    public User(User user) {
-        this.id = user.getId();
-        this.login = user.getLogin();
-        this.password = user.getPassword();
-        this.name = user.getName();
-        this.surname = user.getSurname();
-        this.isActive = user.isActive();
     }
 
 }
