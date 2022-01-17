@@ -3,7 +3,7 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="./templates/MainTemplate.xhtml">
 
     <ui:define name="top">
@@ -48,25 +48,34 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
                                         <h:inputText class="form-control" id="userPassword" placeholder="${msg['addUser.password']}" value="#{addUserBean.user.password}"/>
                                         <label for="userPassword">${msg['addUser.password']}</label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
                                         <h:inputText class="form-control" id="userPasswordConfirm" placeholder="${msg['addUser.passwordConfirm']}" value="#{addUserBean.user.password}"/>
                                         <label for="userPasswordConfirm">${msg['addUser.passwordConfirm']}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="form-floating mb-3">
+                                        <h:selectOneMenu value="#{addUserBean.user.permissionLevel}" class="form-select" id="userPermissionLevel">
+                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.user']}" itemValue="USER"/>
+                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.moderator']}" itemValue="RESOURCE_ADMIN"/>
+                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.admin']}" itemValue="USER_ADMIN"/>
+                                        </h:selectOneMenu>
+                                        <label for="userPermissionLevel">${msg['addUser.permissionLevel']}</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="container-fluid"></div>
 
-                        <h:commandButton class="btn btn-success" value="${msg['addUser.button']}" action="#{addUserBean.save}" />
+                        <h:commandButton class="btn btn-success float-end mb-2" value="${msg['addUser.button']}" action="#{addUserBean.save}" />
                     </h:form>
                 </div>
             </div>

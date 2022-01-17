@@ -30,14 +30,14 @@ public class User{
     @Getter @Setter
     private boolean isActive = true;
 
-    private int permissionLevel;
+    private String permissionLevel;
 
     @JsonIgnore
-    public int getPermissionLevel() {
+    public String getPermissionLevel() {
         return permissionLevel;
     }
 
-    public void setPermissionLevel(int permissionLevel) {
+    public void setPermissionLevel(String permissionLevel) {
         this.permissionLevel = permissionLevel;
     }
 

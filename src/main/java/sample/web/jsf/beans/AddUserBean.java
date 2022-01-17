@@ -26,7 +26,18 @@ public class AddUserBean {
     }
 
     public void save() {
-        RestClient.target("user/create").request().post(Entity.json(user));
+
+        switch (user.getPermissionLevel()) {
+            case "USER_ADMIN":
+                RestClient.target("user/createUserAdmin").request().post(Entity.json(user));
+                break;
+            case "RESOURCE_ADMIN":
+                RestClient.target("user/createResourceAdmin").request().post(Entity.json(user));
+                break;
+            default:
+                RestClient.target("user/create").request().post(Entity.json(user));
+        }
+
         // TODO dodać przekierowanie do potwierdzenia
         // return "userConfirm";
     }
