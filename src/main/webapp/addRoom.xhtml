@@ -21,28 +21,40 @@
 
 
     <ui:define name="content">
-        <div class="container text-light" style="background: #00000088;">
+        <div class="container text-light">
 
             <div class="row">
+                <p class="fs-1 text-center mt-4">
+                    ${msg['addRoom.breadcrumb']}
+                </p>
                 <div class="col-12">
                     <h:form class="text-dark">
                         <div class="container-fluid">
                             <div class="row mt-3">
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="roomNumber" placeholder="${msg['addRoom.number']}" value="#{addRoomBean.room.roomNumber}"/>
+                                        <h:inputText class="form-control"
+                                                     id="roomNumber"
+                                                     placeholder="${msg['addRoom.number']}"
+                                                     value="#{addRoomBean.room.roomNumber}"/>
                                         <label for="roomNumber">${msg['addRoom.number']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="roomPrice" placeholder="${msg['addRoom.price']}" value="#{addRoomBean.room.price}"/>
+                                        <h:inputText class="form-control"
+                                                     id="roomPrice"
+                                                     placeholder="${msg['addRoom.price']}"
+                                                     value="#{addRoomBean.room.price}"/>
                                         <label for="roomPrice">${msg['addRoom.price']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="roomCapacity" placeholder="${msg['addRoom.capacity']}" value="#{addRoomBean.room.capacity}"/>
+                                        <h:inputText class="form-control"
+                                                     id="roomCapacity"
+                                                     placeholder="${msg['addRoom.capacity']}"
+                                                     value="#{addRoomBean.room.capacity}"/>
                                         <label for="roomCapacity">${msg['addRoom.capacity']}</label>
                                     </div>
                                 </div>
@@ -50,14 +62,25 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <h:inputTextarea class="form-control" id="roomDescription" placeholder="${msg['addRoom.description']}" value="#{addRoomBean.room.description}"/>
+                                        <h:inputTextarea class="form-control"
+                                                         id="roomDescription"
+                                                         placeholder="${msg['addRoom.description']}"
+                                                         value="#{addRoomBean.room.description}"/>
                                         <label for="roomDescription">${msg['addRoom.description']}</label>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <h:commandButton class="btn btn-success" value="${msg['addRoom.saveButton']}" action="#{addRoomBean.save}" />
-                                </div>
                             </div>
+
+                        </div>
+                        <div class="float-end mb-2 pe-4 mb-4">
+<!--                            <h:commandButton class="btn btn-warning me-2"-->
+<!--                                             value="Anuluj"-->
+<!--                                             action="roomList.xhtml"-->
+<!--                                             immediate=""/>-->
+<!--// TODO dodaćprzycisk anuluj -->
+                            <h:commandButton class="btn btn-success"
+                                             value="${msg['addRoom.saveButton']}"
+                                             action="#{addRoomBean.save}" />
                         </div>
                     </h:form>
                 </div>

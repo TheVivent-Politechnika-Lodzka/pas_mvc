@@ -35,7 +35,8 @@ public class AddReservationBean {
             return "";
         }
 
-        Response response =  RestClient.target("reservation/" + userId + "/" + roomId).request().post(Entity.json(reservation));
+        Response response =  RestClient.target("reservation/" + userId + "/"
+                + roomId).request().post(Entity.json(reservation));
 
         if (response.getStatus() == 201) {
             return "reservationList";

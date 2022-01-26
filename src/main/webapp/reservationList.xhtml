@@ -22,42 +22,54 @@
 
 
     <ui:define name="content">
-            <div class="row">
-                <div class="col-12 p-2">
+            <div class="row mx-4">
+                <p class="fs-1 text-center my-4">
+                    ${msg['reservationList.breadcrumb']}
+                </p>
+                <div class="col-12 p-0 mb-2">
                     <h:form class="text-dark">
-                        <div class="container-fluid">
+                        <div class="container-fluid p-0">
 
-                            <div class="row">
-                                <div class="col-12 col-md-3">
-                                    <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userId" placeholder="${msg['reservationList.userId']}" value="#{reservationListBean.userId}" />
+                            <div class="row m-0">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating mb-6">
+                                        <h:inputText class="form-control"
+                                                     id="userId"
+                                                     placeholder="${msg['reservationList.userId']}"
+                                                     value="#{reservationListBean.userId}" />
                                         <label for="userId" class="form-label">${msg['reservationList.userId']}</label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="roomId" placeholder="${msg['reservationList.roomId']}" value="#{reservationListBean.roomId}" />
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating mb-6">
+                                        <h:inputText class="form-control"
+                                                     id="roomId"
+                                                     placeholder="${msg['reservationList.roomId']}"
+                                                     value="#{reservationListBean.roomId}" />
                                         <label for="roomId" class="form-label">${msg['reservationList.roomId']}</label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-md-6 mt-2">
                                     <div class="form-check text-light">
-                                        <h:selectBooleanCheckbox class="form-check-input" id="isReserved" value="#{reservationListBean.archived}" />
+                                        <h:selectBooleanCheckbox class="form-check-input"
+                                                                 id="isReserved"
+                                                                 value="#{reservationListBean.archived}" />
                                         <label class="form-check-label" for="isReserved">
                                             ${msg['reservationList.includeArchived']}
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
-                                    <h:commandButton class="btn btn-success float-end mb-2" id="search" action="#{reservationListBean.search}" value="${msg['reservationList.search']}" />
+                                <div class="col-12 col-md-6 mt-2">
+                                    <h:commandButton class="btn btn-success float-end mb-2"
+                                                     id="search"
+                                                     action="#{reservationListBean.search}"
+                                                     value="${msg['reservationList.search']}" />
                                 </div>
                             </div>
                         </div>
                     </h:form>
                 </div>
-            </div>
-            <div class="row text-dark">
-                <div class="col-12">
+                <div class="col-12 text-dark">
                     <table class="table align-middle table-light table-striped table-hover">
                         <caption class="text-light">${msg["reservationList.table.caption"]}</caption>
                         <thead class="table-dark">
@@ -83,7 +95,9 @@
                                         <td>${reservation.endDate}</td>
                                         <td>${reservation.user.login}</td>
                                         <td>${reservation.hotelRoom.roomNumber}</td>
-                                        <td>${reservation.active ? msg['reservationList.table.isActive'] : msg['reservationList.table.isNonActive']}</td>
+                                        <td>${reservation.active ?
+                                            msg['reservationList.table.isActive'] :
+                                            msg['reservationList.table.isNonActive']}</td>
                                         <td>
                                             <h:commandButton
                                                     class="btn btn-primary"

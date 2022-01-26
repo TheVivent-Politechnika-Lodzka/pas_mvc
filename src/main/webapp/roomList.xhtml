@@ -23,10 +23,13 @@
 
     <ui:define name="content">
 
-            <div class="row text-dark">
-                <div class="col-12">
+            <div class="row mx-4">
+                <p class="fs-1 text-center my-4">
+                    ${msg['roomList.breadcrumb']}
+                </p>
+                <div class="col-12 text-dark">
                     <table class="table table-light table-striped table-hover">
-                        <caption>${msg["roomList.table.caption"]}</caption>
+                        <caption class="text-light">${msg["roomList.table.caption"]}</caption>
                         <thead class="table-dark">
                             <tr>
                                 <th scope="col">#{msg['roomList.table.id']}</th>

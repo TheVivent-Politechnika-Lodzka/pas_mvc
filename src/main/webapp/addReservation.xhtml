@@ -21,28 +21,40 @@
 
 
     <ui:define name="content">
-        <div class="container text-light" style="background: #00000088;">
+        <div class="container text-light">
 
             <div class="row">
+                <p class="fs-1 text-center mt-4">
+                    ${msg['addReservation.breadcrumb']}
+                </p>
                 <div class="col-12">
                     <h:form class="text-dark">
                         <div class="container-fluid">
                             <div class="row mt-3">
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userId" placeholder="${msg['addReservation.userId']}" value="#{addReservationBean.userId}"/>
+                                        <h:inputText class="form-control"
+                                                     id="userId"
+                                                     placeholder="${msg['addReservation.userId']}"
+                                                     value="#{addReservationBean.userId}"/>
                                         <label for="userId">${msg['addReservation.userId']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="roomId" placeholder="${msg['addReservation.roomId']}" value="#{addReservationBean.roomId}"/>
+                                        <h:inputText class="form-control"
+                                                     id="roomId"
+                                                     placeholder="${msg['addReservation.roomId']}"
+                                                     value="#{addReservationBean.roomId}"/>
                                         <label for="roomId">${msg['addReservation.roomId']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="startDate" placeholder="${msg['addReservation.startDate']}" value="#{addReservationBean.reservation.startDate}">
+                                        <h:inputText class="form-control"
+                                                     id="startDate"
+                                                     placeholder="${msg['addReservation.startDate']}"
+                                                     value="#{addReservationBean.reservation.startDate}">
                                             <f:converter converterId="dateConverter"/>
                                         </h:inputText>
                                         <label for="startDate">${msg['addReservation.startDate']}</label>
@@ -50,7 +62,10 @@
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="endDate" placeholder="${msg['addReservation.endDate']}" value="#{addReservationBean.reservation.endDate}">
+                                        <h:inputText class="form-control"
+                                                     id="endDate"
+                                                     placeholder="${msg['addReservation.endDate']}"
+                                                     value="#{addReservationBean.reservation.endDate}">
                                             <f:converter converterId="dateConverter"/>
                                         </h:inputText>
                                         <label for="endDate">${msg['addReservation.endDate']}</label>
@@ -60,7 +75,15 @@
                             </div>
                         </div>
 
-                        <h:commandButton class="btn btn-success float-end mb-2" value="${msg['addReservation.saveButton']}" action="#{addReservationBean.save}" />
+                        <div class="float-end mb-2 pe-4 mb-4">
+                            <h:commandButton class="btn btn-warning me-2"
+                                             value="Anuluj"
+                                             action="reservationList.xhtml"
+                                             immediate=""/>
+                            <h:commandButton class="btn btn-success float-end mb-2"
+                                         value="${msg['addReservation.saveButton']}"
+                                         action="#{addReservationBean.save}" />
+                        </div>
                     </h:form>
                 </div>
             </div>
