@@ -40,22 +40,19 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <h:outputLink class="nav-link" value="reservationList.xhtml">Rezerwacje</h:outputLink>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarReservationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Rezerwacje
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarReservationDropdown">
+                    <li>
+                        <h:outputLink class="dropdown-item" value="reservationList.xhtml">Lista</h:outputLink>
+                    </li>
+                    <li>
+                        <h:outputLink class="dropdown-item" value="addReservation.xhtml">Dodaj</h:outputLink>
+                    </li>
+                </ul>
             </li>
-<!--            <li class="nav-item"><h:outputLink class="nav-link" value="start.xhtml" >${msg["main.page"]}</h:outputLink></li>-->
-<!--            <li class="nav-item"><h:outputLink class="nav-link" value="dependencies.xhtml" >${msg["menu.dependencies"]}</h:outputLink></li>-->
-<!--            <li class="nav-item"><h:outputLink class="nav-link" value="templates.xhtml" >${msg["menu.templates"]}</h:outputLink></li>-->
-<!--            <li class="nav-item"><h:outputLink class="nav-link" value="stylesheets.xhtml" >${msg["menu.stylesheets"]}</h:outputLink></li>-->
-<!--            <li class="nav-item"><h:outputLink class="nav-link" alue="navigation.xhtml" >${msg["menu.navigation"]}</h:outputLink></li>-->
-<!--            <li class="nav-item"><h:outputLink class="nav-link" value="i18n.xhtml" >${msg["menu.i18n"]}</h:outputLink></li>-->
-<!--            <li class="nav-item"><h:outputLink class="nav-link" value="beans.xhtml" >${msg["menu.beans"]}</h:outputLink></li>-->
-<!--            &lt;!&ndash;        <li><h:outputLink value="formElements.xhtml" > ${msg["menu.formElements"]}</h:outputLink></li>-->
-<!--                    <ul>-->
-<!--                        <li><h:outputLink value="formElements_text.xhtml" >${msg["menu.formElements_text"]}</h:outputLink></li>-->
-<!--                    </ul>-->
-<!--                    <li><h:outputLink value="dataTable.xhtml" >${msg["menu.dataTable"]}</h:outputLink></li>&ndash;&gt;-->
-<!--            <li class="nav-item"><h:outputLink class="nav-link" value="validation.xhtml" >${msg["menu.validation"]}</h:outputLink></li>-->
         </ul>
     </div>
 
