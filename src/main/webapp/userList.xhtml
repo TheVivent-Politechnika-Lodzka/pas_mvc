@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE composition
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
@@ -23,17 +24,21 @@
 
     <ui:define name="content">
             <div class="row">
+                <p class="fs-1 text-center mt-4">
+                    ${msg['userList.breadcrumb']}
+                </p>
                 <div class="col-12 p-2">
                     <h:form>
                         <div class="text-dark form-floating input-group">
-                            <h:inputText id="floatingSearch" class="form-control"
+                            <h:inputText class="form-control" id="floatingSearch"
                                  placeholder="#{msg['userList.searchButton']}"
                                  value="#{userListBean.search}"
-                            >
-                                <f:ajax event="keyup" listener="#{userListBean.ajaxHandler}" execute="@form" render="ajaxRender" />
-                            </h:inputText>
+                            />
                             <label for="floatingSearch">#{msg['userList.searchButton']}</label>
-
+                            <h:commandButton value="${msg['userList.searchButton']}"
+                                             action="#{userListBean.search}"
+                                             class="btn btn-success px-5"
+                            />
                         </div>
                     </h:form>
 
@@ -68,12 +73,16 @@
                                         <td>${user.permissionLevel}</td>
                                         <td>
 
-                                                #{user.active ? msg['userList.table.isActive'] : msg['userList.table.isNotActive']}
+                                                #{user.active ?
+                                                msg['userList.table.isActive'] :
+                                                msg['userList.table.isNotActive']}
 
                                                 <h:commandButton
                                                         class="btn btn-primary"
                                                         action="#{userListBean.toggleUserActivation(user)}"
-                                                        value="#{user.active ? msg['userList.table.deactivate'] : msg['userList.table.activate']}"
+                                                        value="#{user.active ?
+                                                        msg['userList.table.deactivate'] :
+                                                        msg['userList.table.activate']}"
                                                 />
                                         </td>
                                         <td>

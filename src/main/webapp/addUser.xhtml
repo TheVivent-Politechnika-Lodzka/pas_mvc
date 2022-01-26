@@ -21,28 +21,38 @@
 
 
     <ui:define name="content">
-        <div class="container text-light" style="background: #00000088;">
+        <div class="container text-light" >
 
             <div class="row">
+                <p class="fs-1 text-center mt-4">
+                    ${msg['addUser.breadcrumb']}
+                </p>
                 <div class="col-12">
                     <h:form class="text-dark">
                         <div class="container-fluid">
                             <div class="row mt-3">
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userLogin" placeholder="${msg['addUser.login']}" value="#{addUserBean.user.login}"/>
+                                        <h:inputText class="form-control" id="userLogin"
+                                                     placeholder="${msg['addUser.login']}"
+                                                     value="#{addUserBean.user.login}"/>
                                         <label for="userLogin">${msg['addUser.login']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userName" placeholder="${msg['addUser.name']}" value="#{addUserBean.user.name}"/>
+                                        <h:inputText class="form-control" id="userName"
+                                                     placeholder="${msg['addUser.name']}"
+                                                     value="#{addUserBean.user.name}"/>
                                         <label for="userName">${msg['addUser.name']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userSurname" placeholder="${msg['addUser.surname']}" value="#{addUserBean.user.surname}"/>
+                                        <h:inputText class="form-control"
+                                                     id="userSurname"
+                                                     placeholder="${msg['addUser.surname']}"
+                                                     value="#{addUserBean.user.surname}"/>
                                         <label for="userSurname">${msg['addUser.surname']}</label>
                                     </div>
                                 </div>
@@ -50,32 +60,49 @@
                             <div class="row">
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userPassword" placeholder="${msg['addUser.password']}" value="#{addUserBean.user.password}"/>
+                                        <h:inputSecret class="form-control"
+                                                     id="userPassword"
+                                                     placeholder="${msg['addUser.password']}"
+                                                     value="#{addUserBean.user.password}"/>
                                         <label for="userPassword">${msg['addUser.password']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userPasswordConfirm" placeholder="${msg['addUser.passwordConfirm']}" value="#{addUserBean.user.password}"/>
+                                        <h:inputSecret class="form-control"
+                                                     id="userPasswordConfirm"
+                                                     placeholder="${msg['addUser.passwordConfirm']}"
+                                                     value="#{addUserBean.passwordRepeat}"/>
                                         <label for="userPasswordConfirm">${msg['addUser.passwordConfirm']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:selectOneMenu value="#{addUserBean.user.permissionLevel}" class="form-select" id="userPermissionLevel">
-                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.user']}" itemValue="USER"/>
-                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.moderator']}" itemValue="RESOURCE_ADMIN"/>
-                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.admin']}" itemValue="USER_ADMIN"/>
+                                        <h:selectOneMenu value="#{addUserBean.user.permissionLevel}"
+                                                         class="form-select" id="userPermissionLevel">
+                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.user']}"
+                                                          itemValue="USER"/>
+                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.moderator']}"
+                                                          itemValue="RESOURCE_ADMIN"/>
+                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.admin']}"
+                                                          itemValue="USER_ADMIN"/>
                                         </h:selectOneMenu>
                                         <label for="userPermissionLevel">${msg['addUser.permissionLevel']}</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="float-end mb-2 pe-4 mb-4">
+                            <h:commandButton class="btn btn-warning me-2"
+                                             value="Anuluj"
+                                             action="userList.xhtml"
+                                             immediate=""/>
 
-<!--                        // TODO zrobić poprawne potwierdzenie hasła. trzeba by przejrzeć wykład z karbo jak to dobrze zrobić-->
+                            <h:commandButton class="btn btn-success"
+                                             value="${msg['addUser.button']}"
+                                             action="#{addUserBean.save}" />
+                        </div>
 
-                        <h:commandButton class="btn btn-success float-end mb-2" value="${msg['addUser.button']}" action="#{addUserBean.save}" />
                     </h:form>
                 </div>
             </div>

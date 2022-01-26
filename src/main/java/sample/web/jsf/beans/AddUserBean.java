@@ -20,12 +20,26 @@ public class AddUserBean {
     @Getter
     User user = new User();
 
+    private String passwordRepeat;
+
     @PostConstruct
     public void init() {
         user = new User();
     }
 
+    public String getPasswordRepeat() {
+        return passwordRepeat;
+    }
+
+    public void setPasswordRepeat(String passwordRepeat) {
+        this.passwordRepeat = passwordRepeat;
+    }
+
     public void save() {
+
+        if (!(getPasswordRepeat().equals(user.getPassword())) || getPasswordRepeat() == null){
+            return;
+        }
 
         switch (user.getPermissionLevel()) {
             case "USER_ADMIN":
