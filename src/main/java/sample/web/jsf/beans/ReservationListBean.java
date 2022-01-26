@@ -1,6 +1,7 @@
 package sample.web.jsf.beans;
 
 import lombok.Getter;
+import lombok.Setter;
 import sample.web.jsf.model.Reservation;
 import sample.web.jsf.utils.RestClient;
 
@@ -18,10 +19,32 @@ public class ReservationListBean {
     @Getter
     private List<Reservation> reservations;
 
+    @Getter @Setter
+    private String userId = "";
+
+    @Getter @Setter
+    private String roomId = "";
+
+    @Getter @Setter
+    private boolean archived = true;
+
 
     @PostConstruct
     public void init() {
         getAllReservations();
+    }
+
+    public void search() {
+        try {
+            reservations = RestClient.target("reservation/search")
+                    .queryParam("clientId", userId)
+                    .queryParam("roomId", roomId)
+                    .queryParam("archived", archived)
+                    .request().get(new GenericType<List<Reservation>>() {});
+        }
+        catch (Exception e) {
+            reservations.clear();
+        }
     }
 
     private void getAllReservations() {
