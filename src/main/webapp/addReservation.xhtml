@@ -37,7 +37,8 @@
                                                      id="userId"
                                                      placeholder="${msg['addReservation.userId']}"
                                                      value="#{addReservationBean.userId}"
-                                                     required="true"/>
+                                                     required="true"
+                                                     pattern="^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89AB][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}"/>
                                         <label for="userId">${msg['addReservation.userId']}</label>
                                     </div>
                                 </div>
@@ -47,7 +48,8 @@
                                                      id="roomId"
                                                      placeholder="${msg['addReservation.roomId']}"
                                                      value="#{addReservationBean.roomId}"
-                                                     required="true"/>
+                                                     required="true"
+                                                     pattern="^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89AB][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}"/>
                                         <label for="roomId">${msg['addReservation.roomId']}</label>
                                     </div>
                                 </div>
