@@ -27,6 +27,24 @@
                 <p class="fs-1 text-center my-4">
                     ${msg['roomList.breadcrumb']}
                 </p>
+
+
+                <div class="col-12 p-0">
+                    <h:form>
+                        <div class="text-dark form-floating input-group">
+                            <h:inputText class="form-control" id="floatingSearch"
+                                         placeholder="${msg['roomList.searchText']}"
+                                         value="#{roomListBean.searchString}"
+                            />
+                            <label for="floatingSearch">${msg['roomList.searchText']}</label>
+                            <h:commandButton value="${msg['roomList.searchButton']}"
+                                             action="#{roomListBean.search}"
+                                             class="btn btn-success px-5"
+                            />
+                        </div>
+                    </h:form>
+                </div>
+
                 <div class="col-12 text-dark">
                     <table class="table table-light table-striped table-hover">
                         <caption class="text-light">${msg["roomList.table.caption"]}</caption>
