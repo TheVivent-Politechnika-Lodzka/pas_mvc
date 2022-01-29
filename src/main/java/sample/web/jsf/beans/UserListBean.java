@@ -24,6 +24,9 @@ public class UserListBean implements Serializable {
     @Inject
     private EditUserBean editUserBean;
 
+    @Inject
+    private UserDetailsBean userDetailsBean;
+
     @Getter @Setter
     private String search = "";
 
@@ -33,6 +36,11 @@ public class UserListBean implements Serializable {
     @PostConstruct
     public void init() {
         findUsersByLogin();
+    }
+
+    public String userDetails(User user){
+        userDetailsBean.setUser(user);
+        return "userDetails";
     }
 
     public String editUser(User user) {
