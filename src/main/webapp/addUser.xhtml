@@ -36,7 +36,8 @@
                                         <h:inputText class="form-control" id="userLogin"
                                                      placeholder="${msg['addUser.login']}"
                                                      value="#{addUserBean.user.login}"
-                                                     required="true"/>
+                                                     required="true"
+                                                     pattern="^[a-zA-Z0-9]{3,20}" />
                                         <label for="userLogin">${msg['addUser.login']}</label>
                                     </div>
                                 </div>
@@ -45,7 +46,8 @@
                                         <h:inputText class="form-control" id="userName"
                                                      placeholder="${msg['addUser.name']}"
                                                      value="#{addUserBean.user.name}"
-                                                     required="true"/>
+                                                     required="true"
+                                                     pattern="^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]{3,20}"/>
                                         <label for="userName">${msg['addUser.name']}</label>
                                     </div>
                                 </div>
@@ -55,7 +57,8 @@
                                                      id="userSurname"
                                                      placeholder="${msg['addUser.surname']}"
                                                      value="#{addUserBean.user.surname}"
-                                                     required="true"/>
+                                                     required="true"
+                                                     pattern="^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]{3,20}"/>
                                         <label for="userSurname">${msg['addUser.surname']}</label>
                                     </div>
                                 </div>
@@ -67,7 +70,8 @@
                                                      id="userPassword"
                                                      placeholder="${msg['addUser.password']}"
                                                      value="#{addUserBean.user.password}"
-                                                       required="true"/>
+                                                     required="true"
+                                                     pattern="^[a-zA-Z0-9]{6,20}"/>
                                         <label for="userPassword">${msg['addUser.password']}</label>
                                     </div>
                                 </div>
@@ -77,7 +81,8 @@
                                                      id="userPasswordConfirm"
                                                      placeholder="${msg['addUser.passwordConfirm']}"
                                                      value="#{addUserBean.passwordRepeat}"
-                                                       required="true"/>
+                                                     required="true"
+                                                     pattern="^[a-zA-Z0-9]{6,20}"/>
                                         <label for="userPasswordConfirm">${msg['addUser.passwordConfirm']}</label>
                                     </div>
                                 </div>

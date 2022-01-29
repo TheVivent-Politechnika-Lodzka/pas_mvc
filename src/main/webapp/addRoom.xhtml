@@ -37,7 +37,8 @@
                                                      id="roomNumber"
                                                      placeholder="${msg['addRoom.number']}"
                                                      value="#{addRoomBean.room.roomNumber}"
-                                                     required="true"/>
+                                                     required="true"
+                                                     pattern="^[0-9]{1,20}"/>
                                         <label for="roomNumber">${msg['addRoom.number']}</label>
                                     </div>
                                 </div>
@@ -47,7 +48,8 @@
                                                      id="roomPrice"
                                                      placeholder="${msg['addRoom.price']}"
                                                      value="#{addRoomBean.room.price}"
-                                                     required="true"/>
+                                                     required="true"
+                                                     pattern="^[0-9]{1,20}"/>
                                         <label for="roomPrice">${msg['addRoom.price']}</label>
                                     </div>
                                 </div>
@@ -57,7 +59,8 @@
                                                      id="roomCapacity"
                                                      placeholder="${msg['addRoom.capacity']}"
                                                      value="#{addRoomBean.room.capacity}"
-                                                     required="true"/>
+                                                     required="true"
+                                                     pattern="^[0-9]{1,20}"/>
                                         <label for="roomCapacity">${msg['addRoom.capacity']}</label>
                                     </div>
                                 </div>
