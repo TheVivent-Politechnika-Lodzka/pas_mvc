@@ -34,9 +34,17 @@ public class HotelRoom {
     @Getter @Setter
     private boolean isAllocated = false;
 
-    @Getter @Setter
-    @JsonIgnore
+    @Getter
     private boolean isActive = true;
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    @JsonIgnore
+    public boolean isActive() {
+        return isActive;
+    }
 
     public HotelRoom(UUID id, int roomNumber, int price, int capacity, String description) {
         this.id = id;
