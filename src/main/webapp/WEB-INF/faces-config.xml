@@ -49,6 +49,14 @@
     </navigation-rule>
 
     <navigation-rule>
+        <from-view-id>/userList.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>userDetails</from-outcome>
+            <to-view-id>/viewUser.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
         <from-view-id>/roomList.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>editRoom</from-outcome>

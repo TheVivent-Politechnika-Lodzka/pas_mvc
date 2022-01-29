@@ -52,11 +52,10 @@
                             <tr>
                                 <th scope="col">#{msg['userList.table.id']}</th>
                                 <th scope="col">#{msg['userList.table.login']}</th>
-                                <th scope="col">#{msg['userList.table.name']}</th>
-                                <th scope="col">#{msg['userList.table.surname']}</th>
                                 <th scope="col">#{msg['userList.table.permissionLevel']}</th>
                                 <th scope="col">#{msg['userList.table.activation']}</th>
                                 <th scope="col">#{msg['userList.table.edit']}</th>
+                                <th scope="col">#{msg['userList.table.details']}</th>
                             </tr>
                         </thead>
                         <tbody id="ajaxRender">
@@ -68,8 +67,6 @@
                                             ${user.id}
                                         </th>
                                         <td>${user.login}</td>
-                                        <td>${user.name}</td>
-                                        <td>${user.surname}</td>
                                         <td>${user.permissionLevel}</td>
                                         <td>
 
@@ -90,6 +87,13 @@
                                                     class="btn btn-primary"
                                                     action="#{userListBean.editUser(user)}"
                                                     value="#{msg['userList.table.editButton']}"
+                                            />
+                                        </td>
+                                        <td>
+                                            <h:commandButton
+                                                    class="btn btn-primary"
+                                                    action="#{userListBean.userDetails(user)}"
+                                                    value="#{msg['userList.table.details']}"
                                             />
                                         </td>
                                     </h:form>
