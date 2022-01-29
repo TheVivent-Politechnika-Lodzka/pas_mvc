@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
 
 @Named
 @RequestScoped
@@ -23,8 +24,15 @@ public class AddRoomBean {
 
 
 
-    public void save() {
-        RestClient.target("room").request().post(Entity.json(room));
+    public String save() {
+
+        Response response = RestClient.target("room").request().post(Entity.json(room));
+
+        if (response.getStatus() == 201) {
+            return "roomList";
+        }
+
+        return "";
         // TODO dodać jakieś przekierowanie do potwierdzenia
         // return "roomConfirm";
     }

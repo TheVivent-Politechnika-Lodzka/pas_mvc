@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
 
 @Named
 @RequestScoped
@@ -35,23 +36,30 @@ public class AddUserBean {
         this.passwordRepeat = passwordRepeat;
     }
 
-    public void save() {
+    public String save() {
 
         if (!(getPasswordRepeat().equals(user.getPassword())) || getPasswordRepeat() == null){
-            return;
+            return "";
         }
+
+        Response response;
 
         switch (user.getPermissionLevel()) {
             case "USER_ADMIN":
-                RestClient.target("user/createUserAdmin").request().post(Entity.json(user));
+                response = RestClient.target("user/createUserAdmin").request().post(Entity.json(user));
                 break;
             case "RESOURCE_ADMIN":
-                RestClient.target("user/createResourceAdmin").request().post(Entity.json(user));
+                response = RestClient.target("user/createResourceAdmin").request().post(Entity.json(user));
                 break;
             default:
-                RestClient.target("user/create").request().post(Entity.json(user));
+                response = RestClient.target("user/create").request().post(Entity.json(user));
         }
 
+        if (response.getStatus() == 201) {
+            return "userList";
+        }
+
+        return "";
         // TODO dodać przekierowanie do potwierdzenia
         // return "userConfirm";
     }
