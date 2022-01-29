@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import sample.web.jsf.model.User;
 import sample.web.jsf.restclient.RestClient;
+import sample.web.jsf.restclient.UserRestClient;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -42,13 +43,13 @@ public class AddUserBean {
 
         switch (user.getPermissionLevel()) {
             case "USER_ADMIN":
-                RestClient.target("user/createUserAdmin").request().post(Entity.json(user));
+                UserRestClient.createUserAdmin(user);
                 break;
             case "RESOURCE_ADMIN":
-                RestClient.target("user/createResourceAdmin").request().post(Entity.json(user));
+                UserRestClient.createResourceAdmin(user);
                 break;
             default:
-                RestClient.target("user/create").request().post(Entity.json(user));
+                UserRestClient.createClient(user);
         }
 
         // TODO dodać przekierowanie do potwierdzenia

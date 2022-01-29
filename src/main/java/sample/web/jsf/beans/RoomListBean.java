@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.HotelRoom;
+import sample.web.jsf.restclient.HotelRoomRestClient;
 import sample.web.jsf.restclient.RestClient;
 
 import javax.annotation.PostConstruct;
@@ -47,11 +48,11 @@ public class RoomListBean {
     }
 
     public void getAllRooms() {
-        roomList = RestClient.target("room/all").request().get(new GenericType<List<HotelRoom>>() {});
+        roomList = HotelRoomRestClient.getAll();
     }
 
     public void deleteRoom(HotelRoom room){
-        RestClient.target("room/" + room.getId().toString()).request().delete();
+        HotelRoomRestClient.deactivate(room.getId());
         getAllRooms();
     }
 
@@ -62,15 +63,15 @@ public class RoomListBean {
         }
 
         try {
-            UUID.fromString(searchString);
-            HotelRoom room = RestClient.target("room/" + searchString).request().get(HotelRoom.class);
+            UUID id = UUID.fromString(searchString);
+            HotelRoom room = HotelRoomRestClient.getById(id);
             roomList.clear();
             roomList.add(room);
             return;
         } catch (Exception e){}
         try {
-            Integer.parseInt(searchString);
-            HotelRoom room = RestClient.target("room/number/" + searchString).request().get(HotelRoom.class);
+            int number = Integer.parseInt(searchString);
+            HotelRoom room = HotelRoomRestClient.getByNumber(number);
             roomList.clear();
             roomList.add(room);
             return;

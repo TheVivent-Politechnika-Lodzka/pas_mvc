@@ -4,14 +4,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.User;
-import sample.web.jsf.restclient.RestClient;
+import sample.web.jsf.restclient.UserRestClient;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.core.GenericType;
 import java.io.Serializable;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class UserListBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        findUsersByLogin();
+        search();
     }
 
     public String userDetails(User user){
@@ -50,24 +49,23 @@ public class UserListBean implements Serializable {
 
     public void toggleUserActivation(User user) {
         boolean isActive = user.isActive();
-        String userId = user.getId().toString();
 
         if (isActive) {
-            RestClient.target("user/deactivate/" + userId).request().head();
+            UserRestClient.deactivate(user.getId());
         }
         else {
-            RestClient.target("user/activate/" + userId).request().head();
+            UserRestClient.activate(user.getId());
         }
-        findUsersByLogin();
+        search();
     }
 
-    public void findUsersByLogin() {
+    public void search() {
 
         if (search.isEmpty()) {
-            foundUsers = RestClient.target("user/all").request().get(new GenericType<List<User>>() {});
+            foundUsers = UserRestClient.getAll();
         }
         else {
-            foundUsers = RestClient.target("user/search/" + search).request().get(new GenericType<List<User>>() {});
+            foundUsers = UserRestClient.searchByLogin(search);
         }
 
     }

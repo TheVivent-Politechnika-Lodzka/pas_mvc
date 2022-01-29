@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.HotelRoom;
+import sample.web.jsf.restclient.HotelRoomRestClient;
 import sample.web.jsf.restclient.RestClient;
 
 import javax.enterprise.context.SessionScoped;
@@ -26,8 +27,7 @@ public class EditRoomBean implements Serializable {
             throw new IllegalStateException("Proba ominiecia listy");
         }
 
-        Response res = RestClient.target("room/" + room.getId().toString())
-                .request().post(Entity.json(room));
+        Response res = HotelRoomRestClient.update(room);
         room = null;
 
         if (res.getStatus() != 200) {

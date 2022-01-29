@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.User;
 import sample.web.jsf.restclient.RestClient;
+import sample.web.jsf.restclient.UserRestClient;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -25,7 +26,8 @@ public class EditUserBean implements Serializable {
             throw new IllegalStateException("Proba ominiecia listy");
         }
 
-        Response res = RestClient.target("user/" + user.getId().toString()).request().post(Entity.json(user));
+//        Response res = RestClient.target("user/" + user.getId().toString()).request().post(Entity.json(user));
+        Response res = UserRestClient.update(user);
         user = null;
 
         if (res.getStatus() != 200) {

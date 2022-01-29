@@ -4,6 +4,7 @@ package sample.web.jsf.beans;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import sample.web.jsf.model.HotelRoom;
+import sample.web.jsf.restclient.HotelRoomRestClient;
 import sample.web.jsf.restclient.RestClient;
 
 import javax.enterprise.context.RequestScoped;
@@ -21,7 +22,7 @@ public class AddRoomBean {
 
 
     public void save() {
-        RestClient.target("room").request().post(Entity.json(room));
+        HotelRoomRestClient.create(room);
         // TODO dodać jakieś przekierowanie do potwierdzenia
         // return "roomConfirm";
     }
