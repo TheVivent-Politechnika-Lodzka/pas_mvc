@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="./templates/MainTemplate.xhtml">
+
+    <ui:define name="top">
+        <li class="breadcrumb-item">
+            <a href="start.xhtml">
+                ${msg["start.breadcrumb"]}
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="userList.xhtml">
+                ${msg["userList.breadcrumb"]}
+            </a>
+        </li>
+        <li class="breadcrumb-item active">${msg['viewUser.breadcrumb']}</li>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="./templates/menu.xhtml" />
+    </ui:define>
+
+
+    <ui:define name="content">
+        <div class="container text-light" >
+
+            <div class="row">
+                <p class="fs-1 text-center mt-4">
+                    ${msg['viewUser.breadcrumb']}
+                </p>
+                <div class="col-12 pt-0 mt-0 text-dark">
+                        <div class="container-fluid">
+                            <div class="row my-3">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating mb-6">
+                                        <input class="form-control" id="userLogin"
+                                                     placeholder="${msg['addUser.login']}"
+                                                     value="#{userDetailsBean.user.login}"
+                                                     readonly="true"/>
+                                        <label for="userLogin">${msg['addUser.login']}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating mb-6">
+                                        <input class="form-control" id="userPermissionLevel"
+                                               placeholder="${msg['addUser.name']}"
+                                               value="#{userDetailsBean.user.permissionLevel}"
+                                               readonly="true"/>
+                                        <label for="userName">${msg['addUser.permissionLevel']}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating mb-6">
+                                        <input class="form-control" id="userName"
+                                                     placeholder="${msg['addUser.name']}"
+                                                     value="#{userDetailsBean.user.name}"
+                                                     readonly="true"/>
+                                        <label for="userName">${msg['addUser.name']}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating mb-6">
+                                        <input class="form-control"
+                                                     id="userSurname"
+                                                     placeholder="${msg['addUser.surname']}"
+                                                     value="#{userDetailsBean.user.surname}"
+                                                     readonly="true"/>
+                                        <label for="userSurname">${msg['addUser.surname']}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-12 text-dark">
+                        <table class="table align-middle table-light table-striped table-hover">
+                            <thead class="table-dark">
+                            <tr>
+                                <th scope="col">#{msg['reservationList.table.id']}</th>
+                                <th scope="col">#{msg['reservationList.table.startDate']}</th>
+                                <th scope="col">#{msg['reservationList.table.endDate']}</th>
+                                <th scope="col">#{msg['reservationList.table.userLogin']}</th>
+                                <th scope="col">#{msg['reservationList.table.roomNumber']}</th>
+                                <th scope="col">#{msg['reservationList.table.status']}</th>
+                            </tr>
+                            </thead>
+                            <tbody id="ajaxRender">
+                            <c:forEach var="reservation" items="#{reservationListBean.reservations}">
+                                <tr class="text">
+
+                                    <th scope="row">
+                                        ${reservation.id}
+                                    </th>
+                                    <td>${reservation.startDate}</td>
+                                    <td>${reservation.endDate}</td>
+                                    <td>${reservation.user.login}</td>
+                                    <td>${reservation.hotelRoom.roomNumber}</td>
+                                    <td>${reservation.active ?
+                                            msg['reservationList.table.isActive'] :
+                                            msg['reservationList.table.isNonActive']}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                        <div class="float-end mb-2 pe-4 mb-4">
+                            <h:form>
+                            <h:commandButton class="btn btn-success me-2"
+                                             value="${msg['viewUser.back']}"
+                                             action="userList.xhtml"/>
+                            </h:form>
+                        </div>
+
+                </div>
+            </div>
+
+        </div>
+    </ui:define>
+
+</ui:composition>

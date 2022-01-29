@@ -51,6 +51,14 @@
     </navigation-rule>
 
     <navigation-rule>
+        <from-view-id>/userList.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>userDetails</from-outcome>
+            <to-view-id>/viewUser.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
         <from-view-id>/roomList.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>editRoom</from-outcome>
@@ -72,6 +80,24 @@
         <navigation-case>
             <from-outcome>reservationList</from-outcome>
             <to-view-id>/reservationList.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/addUser.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>userList</from-outcome>
+            <to-view-id>/userList.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/addRoom.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>roomList</from-outcome>
+            <to-view-id>/roomList.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
