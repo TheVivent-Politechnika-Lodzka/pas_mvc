@@ -31,11 +31,12 @@ public class EditRoomBean implements Serializable {
             throw new IllegalStateException("Proba ominiecia listy");
         }
 
-        Response res = RestClient.target("room/" + room.getId().toString()).request().post(Entity.json(room));
+        Response res = RestClient.target("room/" + room.getId().toString())
+                .request().post(Entity.json(room));
         room = null;
 
         if (res.getStatus() != 200) {
-            throw new IllegalStateException("Nie udało się zapisać pokoju");
+            throw new IllegalStateException("Nie udało się zapisać pokoju, powód: " + res.getStatus());
         }
 
         return "roomList";
