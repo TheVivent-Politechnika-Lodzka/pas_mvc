@@ -23,6 +23,9 @@ public class RoomListBean {
     @Getter
     private List<HotelRoom> roomList;
 
+    @Inject
+    private RoomDetailsBean roomDetailsBean;
+
     @PostConstruct
     public void init(){
         getAllRooms();
@@ -31,6 +34,11 @@ public class RoomListBean {
     public String editRoom(HotelRoom room){
         editRoomBean.setRoom(room);
         return "editRoom";
+    }
+
+    public String roomDetails(HotelRoom room){
+        roomDetailsBean.setRoom(room);
+        return "roomDetails";
     }
 
     public void getAllRooms() {

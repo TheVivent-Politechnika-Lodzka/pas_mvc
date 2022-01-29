@@ -34,10 +34,10 @@
                             <tr>
                                 <th scope="col">#{msg['roomList.table.id']}</th>
                                 <th scope="col">#{msg['roomList.table.number']}</th>
-                                <th scope="col">#{msg['roomList.table.description']}</th>
                                 <th scope="col">#{msg['roomList.table.capacity']}</th>
                                 <th scope="col">#{msg['roomList.table.price']}</th>
                                 <th scope="col">#{msg['roomList.table.edit']}</th>
+                                <th scope="col">#{msg['roomList.table.roomDetails']}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,13 +46,17 @@
                                     <tr>
                                         <th scope="row">${room.id}</th>
                                         <td>${room.roomNumber}</td>
-                                        <td>${room.description}</td>
                                         <td>${room.capacity}</td>
                                         <td>${room.price}</td>
                                         <td>
                                             <h:commandButton class="btn btn-success"
                                                              action="#{roomListBean.editRoom(room)}"
                                                              value="#{msg['roomList.table.editButton']}" />
+                                        </td>
+                                        <td>
+                                            <h:commandButton class="btn btn-primary"
+                                                             action="#{roomListBean.roomDetails(room)}"
+                                                             value="#{msg['roomList.table.roomDetails']}" />
                                         </td>
                                     </tr>
                                 </h:form>
