@@ -1,4 +1,4 @@
-package sample.web.jsf.utils;
+package sample.web.jsf.restclient;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.client.Client;
@@ -13,5 +13,7 @@ public class RestClient {
     public static WebTarget target(String url) {
         return client.target("http://localhost:2137/api/" + url);
     }
+
+
 
 }

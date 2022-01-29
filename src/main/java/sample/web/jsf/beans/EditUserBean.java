@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.User;
-import sample.web.jsf.utils.RestClient;
+import sample.web.jsf.restclient.RestClient;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;

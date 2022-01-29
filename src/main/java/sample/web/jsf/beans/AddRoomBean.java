@@ -3,12 +3,9 @@ package sample.web.jsf.beans;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import sample.web.jsf.model.HotelRoom;
-import sample.web.jsf.model.User;
-import sample.web.jsf.utils.RestClient;
+import sample.web.jsf.restclient.RestClient;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
