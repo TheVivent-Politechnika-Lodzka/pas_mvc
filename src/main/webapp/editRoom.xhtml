@@ -38,19 +38,19 @@
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="roomNumber" placeholder="${msg['editRoom.number']}" value="#{editRoomBean.room.roomNumber}"/>
+                                        <h:inputText class="form-control" id="roomNumber" placeholder="${msg['editRoom.number']}" value="#{editRoomBean.room.roomNumber}" required="true"/>
                                         <label for="roomNumber">${msg['addRoom.number']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="roomPrice" placeholder="${msg['editRoom.price']}" value="#{editRoomBean.room.price}"/>
+                                        <h:inputText class="form-control" id="roomPrice" placeholder="${msg['editRoom.price']}" value="#{editRoomBean.room.price}" required="true"/>
                                         <label for="roomPrice">${msg['editRoom.price']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="roomCapacity" placeholder="${msg['editRoom.capacity']}" value="#{editRoomBean.room.capacity}"/>
+                                        <h:inputText class="form-control" id="roomCapacity" placeholder="${msg['editRoom.capacity']}" value="#{editRoomBean.room.capacity}" required="true"/>
                                         <label for="roomCapacity">${msg['editRoom.capacity']}</label>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <h:inputTextarea class="form-control" id="roomDescription" placeholder="${msg['editRoom.description']}" value="#{editRoomBean.room.description}"/>
+                                        <h:inputTextarea class="form-control" id="roomDescription" placeholder="${msg['editRoom.description']}" value="#{editRoomBean.room.description}" required="true"/>
                                         <label for="roomDescription">${msg['editRoom.description']}</label>
                                     </div>
                                 </div>

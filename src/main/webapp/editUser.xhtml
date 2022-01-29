@@ -38,19 +38,19 @@
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userLogin" placeholder="${msg['editUser.login']}" value="#{editUserBean.user.login}"/>
+                                        <h:inputText class="form-control" id="userLogin" placeholder="${msg['editUser.login']}" value="#{editUserBean.user.login}" required="true"/>
                                         <label for="userLogin">${msg['editUser.login']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userName" placeholder="${msg['editUser.name']}" value="#{editUserBean.user.name}"/>
+                                        <h:inputText class="form-control" id="userName" placeholder="${msg['editUser.name']}" value="#{editUserBean.user.name}" required="true"/>
                                         <label for="userName">${msg['editUser.name']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userSurname" placeholder="${msg['editUser.surname']}" value="#{editUserBean.user.surname}"/>
+                                        <h:inputText class="form-control" id="userSurname" placeholder="${msg['editUser.surname']}" value="#{editUserBean.user.surname}" required="true"/>
                                         <label for="userSurname">${msg['editUser.surname']}</label>
                                     </div>
                                 </div>
@@ -58,13 +58,13 @@
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userPassword" placeholder="${msg['editUser.password']}" value="#{editUserBean.user.password}"/>
+                                        <h:inputText class="form-control" id="userPassword" placeholder="${msg['editUser.password']}" value="#{editUserBean.user.password}" required="true"/>
                                         <label for="userPassword">${msg['editUser.password']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userPasswordConfirm" placeholder="${msg['editUser.passwordConfirm']}" value="#{editUserBean.user.password}"/>
+                                        <h:inputText class="form-control" id="userPasswordConfirm" placeholder="${msg['editUser.passwordConfirm']}" value="#{editUserBean.user.password}" required="true"/>
                                         <label for="userPasswordConfirm">${msg['editUser.passwordConfirm']}</label>
                                     </div>
                                 </div>
