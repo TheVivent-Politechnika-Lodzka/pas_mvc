@@ -26,31 +26,46 @@
 
 
     <ui:define name="content">
-        <div class="container text-light" style="background: #00000088;">
+        <div class="container text-light">
 
             <div class="row">
-                <div class="col-12">
-                    <h:form class="text-dark">
+                <p class="fs-1 text-center mt-4">
+                    ${msg['editUser.breadcrumb']}
+                </p>
+                <div class="col-12 pt-0 mt-0">
+                    <h:form class="text-dark pt-0 mt-0">
                         <div class="container-fluid">
-                            <div class="row">
+                            <div class="row mt-3">
                                 <div class="col-12 text-light">
                                     <h3>${msg['editUser.title']}: #{editUserBean.user.id}</h3>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userLogin" placeholder="${msg['editUser.login']}" value="#{editUserBean.user.login}" required="true"/>
+                                        <h:inputText class="form-control"
+                                                     id="userLogin"
+                                                     placeholder="${msg['editUser.login']}"
+                                                     value="#{editUserBean.user.login}"
+                                                     required="true"/>
                                         <label for="userLogin">${msg['editUser.login']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userName" placeholder="${msg['editUser.name']}" value="#{editUserBean.user.name}" required="true"/>
+                                        <h:inputText class="form-control"
+                                                     id="userName"
+                                                     placeholder="${msg['editUser.name']}"
+                                                     value="#{editUserBean.user.name}"
+                                                     required="true"/>
                                         <label for="userName">${msg['editUser.name']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userSurname" placeholder="${msg['editUser.surname']}" value="#{editUserBean.user.surname}" required="true"/>
+                                        <h:inputText class="form-control"
+                                                     id="userSurname"
+                                                     placeholder="${msg['editUser.surname']}"
+                                                     value="#{editUserBean.user.surname}"
+                                                     required="true"/>
                                         <label for="userSurname">${msg['editUser.surname']}</label>
                                     </div>
                                 </div>
@@ -58,22 +73,38 @@
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userPassword" placeholder="${msg['editUser.password']}" value="#{editUserBean.user.password}" required="true"/>
+                                        <h:inputSecret class="form-control"
+                                                     id="userPassword"
+                                                     placeholder="${msg['editUser.password']}"
+                                                     value="#{editUserBean.user.password}"
+                                                     required="false"/>
                                         <label for="userPassword">${msg['editUser.password']}</label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userPasswordConfirm" placeholder="${msg['editUser.passwordConfirm']}" value="#{editUserBean.user.password}" required="true"/>
+                                        <h:inputSecret class="form-control"
+                                                     id="userPasswordConfirm"
+                                                     placeholder="${msg['editUser.passwordConfirm']}"
+                                                     value="#{editUserBean.passwordRepeat}"
+                                                     required="false"/>
                                         <label for="userPasswordConfirm">${msg['editUser.passwordConfirm']}</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="float-end mb-2 pe-4 mb-4">
+                            <h:commandButton class="btn btn-warning me-2"
+                                             value="Anuluj"
+                                             action="userList.xhtml"
+                                             immediate=""/>
 
 <!--                     // TODO zrobić poprawne potwierdzenie hasła. trzeba by przejrzeć wykład z karbo jak to dobrze zrobić-->
 
-                        <h:commandButton class="btn btn-success" value="${msg['editUser.button']}" action="#{editUserBean.save}" />
+                        <h:commandButton class="btn btn-success"
+                                         value="${msg['editUser.button']}"
+                                         action="#{editUserBean.save}" />
+                        </div>
                     </h:form>
                 </div>
             </div>

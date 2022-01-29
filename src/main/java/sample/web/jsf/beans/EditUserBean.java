@@ -20,7 +20,28 @@ public class EditUserBean implements Serializable {
     @Getter @Setter
     private User user;
 
+    private String passwordRepeat;
+
+    public String getPasswordRepeat() {
+        return passwordRepeat;
+    }
+
+    public void setPasswordRepeat(String passwordRepeat) {
+        this.passwordRepeat = passwordRepeat;
+    }
+
     public String save() {
+
+
+        if (!(getPasswordRepeat().equals(user.getPassword()))){
+            passwordRepeat = "";
+            return "";
+        }
+
+        if (user.getPassword() == ""){
+            user.setPassword(null);
+        }
+
         if (user == null) {
             throw new IllegalStateException("Proba ominiecia listy");
         }
@@ -31,7 +52,7 @@ public class EditUserBean implements Serializable {
         if (res.getStatus() != 200) {
             throw new IllegalStateException("Nie udało się zapisać użytkownika");
         }
-
+        passwordRepeat = "";
         return "userList";
     }
 
