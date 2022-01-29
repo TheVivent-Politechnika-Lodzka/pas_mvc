@@ -41,11 +41,6 @@ public class UserListBean implements Serializable {
         return "editUser";
     }
 
-    public void ajaxHandler(){
-        System.out.println("ajaxHandler");
-        findUsersByLogin();
-    }
-
     public void toggleUserActivation(User user) {
         boolean isActive = user.isActive();
         String userId = user.getId().toString();

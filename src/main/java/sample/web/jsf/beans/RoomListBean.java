@@ -37,4 +37,9 @@ public class RoomListBean {
         roomList = RestClient.target("room/all").request().get(new GenericType<List<HotelRoom>>() {});
     }
 
+    public void deleteRoom(HotelRoom room){
+        RestClient.target("room/" + room.getId().toString()).request().delete();
+        getAllRooms();
+    }
+
 }
