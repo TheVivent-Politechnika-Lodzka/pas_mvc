@@ -7,12 +7,11 @@ import lombok.Setter;
 import sample.web.jsf.model.HotelRoom;
 import sample.web.jsf.model.User;
 import sample.web.jsf.restclient.HotelRoomRestClient;
-import sample.web.jsf.utils.RestClient;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
 
 @Named
 @RequestScoped

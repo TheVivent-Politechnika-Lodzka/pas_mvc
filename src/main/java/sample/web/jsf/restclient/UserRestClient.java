@@ -44,25 +44,16 @@ public class UserRestClient {
         return RestClient.target("user/" + idStr).request().post(Entity.json(user));
     }
 
-    public static UUID createClient(User user) {
-        Response response = RestClient.target("user/create").request().post(Entity.json(user));
-        String id  = response.getLocation().toString();
-        id = id.substring(id.lastIndexOf("/") + 1);
-        return UUID.fromString(id);
+    public static Response createClient(User user) {
+        return RestClient.target("user/create").request().post(Entity.json(user));
     }
 
-    public static UUID createUserAdmin(User user) {
-        Response response = RestClient.target("user/createUserAdmin").request().post(Entity.json(user));
-        String id  = response.getLocation().toString();
-        id = id.substring(id.lastIndexOf("/") + 1);
-        return UUID.fromString(id);
+    public static Response createUserAdmin(User user) {
+        return RestClient.target("user/createUserAdmin").request().post(Entity.json(user));
     }
 
-    public static UUID createResourceAdmin(User user) {
-        Response response = RestClient.target("user/createResourceAdmin").request().post(Entity.json(user));
-        String id  = response.getLocation().toString();
-        id = id.substring(id.lastIndexOf("/") + 1);
-        return UUID.fromString(id);
+    public static Response createResourceAdmin(User user) {
+        return RestClient.target("user/createResourceAdmin").request().post(Entity.json(user));
     }
 
 }

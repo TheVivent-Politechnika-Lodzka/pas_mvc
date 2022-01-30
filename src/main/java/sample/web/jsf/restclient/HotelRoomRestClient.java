@@ -33,11 +33,8 @@ public class HotelRoomRestClient {
         return RestClient.target("room/" + idStr ).request().post(Entity.json(room));
     }
 
-    public static UUID create(HotelRoom room) {
-        Response response = RestClient.target("room").request().post(Entity.json(room));
-        String id  = response.getLocation().toString();
-        id = id.substring(id.lastIndexOf("/") + 1);
-        return UUID.fromString(id);
+    public static Response create(HotelRoom room) {
+        return RestClient.target("room").request().post(Entity.json(room));
     }
 
 }
