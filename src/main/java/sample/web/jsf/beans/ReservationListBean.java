@@ -3,6 +3,7 @@ package sample.web.jsf.beans;
 import lombok.Getter;
 import lombok.Setter;
 import sample.web.jsf.model.Reservation;
+import sample.web.jsf.restclient.ReservationRestClient;
 import sample.web.jsf.restclient.RestClient;
 
 import javax.annotation.PostConstruct;
@@ -35,11 +36,7 @@ public class ReservationListBean {
 
     public void search() {
         try {
-            reservations = RestClient.target("reservation/search")
-                    .queryParam("clientId", userId)
-                    .queryParam("roomId", roomId)
-                    .queryParam("archived", archived)
-                    .request().get(new GenericType<List<Reservation>>() {});
+            reservations = ReservationRestClient.search(userId, roomId, archived);
         }
         catch (Exception e) {
             reservations.clear();
@@ -48,8 +45,7 @@ public class ReservationListBean {
 
     private void getAllReservations() {
         try {
-            reservations = RestClient.target("reservation/all")
-                    .request().get(new GenericType<List<Reservation>>() {});
+            reservations = ReservationRestClient.getAll();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -58,8 +54,7 @@ public class ReservationListBean {
 
     public void endReservation(Reservation reservation) {
         try {
-            RestClient.target("reservation/end/" + reservation.getId())
-                    .request().head();
+            ReservationRestClient.endReservation(reservation.getId());
         }
         catch (Exception e) {
             e.printStackTrace();

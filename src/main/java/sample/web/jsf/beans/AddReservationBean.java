@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.Reservation;
+import sample.web.jsf.restclient.ReservationRestClient;
 import sample.web.jsf.restclient.RestClient;
 
 import javax.enterprise.context.RequestScoped;
@@ -18,7 +19,7 @@ import java.util.UUID;
 public class AddReservationBean {
 
     @Getter
-    private Reservation reservation = new Reservation();
+    private final Reservation reservation = new Reservation();
 
     @Getter @Setter
     private String roomId = "";
@@ -29,17 +30,18 @@ public class AddReservationBean {
 
     public String save() {
         try {
-            UUID.fromString(roomId);
-            UUID.fromString(userId);
-        } catch (Exception e) {
-            return "";
-        }
+            UUID roomActualId = UUID.fromString(roomId);
+            UUID userActualId = UUID.fromString(userId);
 
-        Response response =  RestClient.target("reservation/" + userId + "/"
-                + roomId).request().post(Entity.json(reservation));
+
+        Response response = ReservationRestClient.create(userActualId, roomActualId, reservation);
 
         if (response.getStatus() == 201) {
             return "reservationList";
+        }
+
+        } catch (Exception e) {
+            return "";
         }
 
         return "";

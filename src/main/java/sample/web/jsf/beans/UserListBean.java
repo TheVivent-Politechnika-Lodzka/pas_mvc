@@ -7,6 +7,8 @@ import sample.web.jsf.model.User;
 import sample.web.jsf.restclient.UserRestClient;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -15,8 +17,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named
-@ViewScoped
-@ManagedBean
+@RequestScoped
 @NoArgsConstructor
 public class UserListBean implements Serializable {
 

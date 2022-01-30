@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.HotelRoom;
 import sample.web.jsf.model.Reservation;
+import sample.web.jsf.restclient.ReservationRestClient;
 import sample.web.jsf.restclient.RestClient;
 
 import javax.annotation.PostConstruct;
@@ -33,9 +34,14 @@ public class RoomDetailsBean implements Serializable {
 
     private void getAllReservations(){
         try {
-            reservations = RestClient.target("reservation/search")
-                    .queryParam("roomId", room.getId().toString())
-                    .request().get(new GenericType<List<Reservation>>() {});
+
+            // TODO naprawić. Z jakiegoś powodu room jest tutaj null
+
+            System.out.println("####################### UserDetailsBean.getAllReservations() #########################");
+            System.out.println("####################### " + room + " #########################");
+
+            String roomId = room.getId().toString();
+            reservations = ReservationRestClient.search("", roomId, true);
         }
         catch (Exception e) {
         }

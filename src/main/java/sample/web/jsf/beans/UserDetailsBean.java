@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.Reservation;
 import sample.web.jsf.model.User;
+import sample.web.jsf.restclient.ReservationRestClient;
 import sample.web.jsf.restclient.RestClient;
 
 import javax.annotation.PostConstruct;
@@ -31,11 +32,18 @@ public class UserDetailsBean implements Serializable {
 
     private void getAllReservations(){
         try {
-            reservations = RestClient.target("reservation/search")
-                    .queryParam("userId", user.getId().toString())
-                    .request().get(new GenericType<List<Reservation>>() {});
+
+            // TODO naprawić. Z jakiegoś powodu user jest tutaj null
+
+            System.out.println("####################### UserDetailsBean.getAllReservations() #########################");
+            System.out.println("####################### " + user + " #########################");
+
+
+            String userId = user.getId().toString();
+            reservations = ReservationRestClient.search(userId, "", true);
         }
         catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
