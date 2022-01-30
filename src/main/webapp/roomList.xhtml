@@ -54,7 +54,7 @@
                                 <th scope="col">#{msg['roomList.table.number']}</th>
                                 <th scope="col">#{msg['roomList.table.capacity']}</th>
                                 <th scope="col">#{msg['roomList.table.price']}</th>
-                                <th scope="col">#{msg['roomList.table.deactivate']}</th>
+                                <th scope="col">#{msg['roomList.table.remove']}</th>
                                 <th scope="col">#{msg['roomList.table.edit']}</th>
                                 <th scope="col">#{msg['roomList.table.roomDetails']}</th>
                             </tr>
@@ -71,7 +71,7 @@
                                             <h:commandButton disabled="${room.active ? false : true}"
                                                              class="btn btn-danger"
                                                              action="#{roomListBean.deleteRoom(room)}"
-                                                             value="#{msg['roomList.table.deactivateButton']}" />
+                                                             value="#{msg['roomList.table.removeButton']}" />
                                         </td>
                                         <td>
                                             <h:commandButton class="btn btn-success"

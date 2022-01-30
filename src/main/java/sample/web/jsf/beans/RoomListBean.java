@@ -5,13 +5,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.HotelRoom;
 import sample.web.jsf.restclient.HotelRoomRestClient;
-import sample.web.jsf.restclient.RestClient;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.core.GenericType;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,7 +50,7 @@ public class RoomListBean {
     }
 
     public void deleteRoom(HotelRoom room){
-        HotelRoomRestClient.deactivate(room.getId());
+        HotelRoomRestClient.delete(room.getId());
         getAllRooms();
     }
 

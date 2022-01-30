@@ -24,26 +24,18 @@ public class UserDetailsBean implements Serializable {
     @Getter @Setter
     private User user;
 
-    @Getter
-    private List<Reservation> reservations = new ArrayList<Reservation>();
-
     @PostConstruct
     public void init() { getAllReservations(); }
 
-    private void getAllReservations(){
+    public List<Reservation> getAllReservations(){
         try {
 
-            // TODO naprawić. Z jakiegoś powodu user jest tutaj null
-
-            System.out.println("####################### UserDetailsBean.getAllReservations() #########################");
-            System.out.println("####################### " + user + " #########################");
-
-
             String userId = user.getId().toString();
-            reservations = ReservationRestClient.search(userId, "", true);
+            return ReservationRestClient.search(userId, "", true);
         }
         catch (Exception e) {
             e.printStackTrace();
+            return new ArrayList<Reservation>();
         }
     }
 }

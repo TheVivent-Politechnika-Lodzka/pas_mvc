@@ -20,7 +20,7 @@ public class HotelRoomRestClient {
         return RestClient.target("room/number/" + number).request().get(HotelRoom.class);
     }
 
-    public static Response deactivate(UUID id) {
+    public static Response delete(UUID id) {
         return RestClient.target("room/" + id.toString()).request().delete();
     }
 

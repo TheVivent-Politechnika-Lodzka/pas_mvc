@@ -22,28 +22,19 @@ import java.util.List;
 
 public class RoomDetailsBean implements Serializable {
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private HotelRoom room;
-
-    @Getter
-    private List<Reservation> reservations = new ArrayList<Reservation>();
 
     @PostConstruct
     public void init() { getAllReservations(); }
 
-    private void getAllReservations(){
+    public List<Reservation> getAllReservations(){
         try {
-
-            // TODO naprawić. Z jakiegoś powodu room jest tutaj null
-
-            System.out.println("####################### RoomDetailsBean.getAllReservations() #########################");
-            System.out.println("####################### " + room + " #########################");
-
             String roomId = room.getId().toString();
-            reservations = ReservationRestClient.search("", roomId, true);
+            return ReservationRestClient.search("", roomId, true);
         }
         catch (Exception e) {
+            return new ArrayList<>();
         }
     }
 
