@@ -5,6 +5,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="./templates/MainTemplate.xhtml">
 
     <ui:define name="top">
@@ -68,10 +69,11 @@
                                         <td>${room.capacity}</td>
                                         <td>${room.price}</td>
                                         <td>
-                                            <h:commandButton disabled="${room.active ? false : true}"
-                                                             class="btn btn-danger"
-                                                             action="#{roomListBean.deleteRoom(room)}"
-                                                             value="#{msg['roomList.table.removeButton']}" />
+                                            <h:commandButton class="btn btn-danger"
+                                                             action="#{roomListBean.deleteRoom()}"
+                                                             value="#{msg['roomList.table.removeButton']}">
+                                                <f:param name="deleteRoomId" value="${room.id}" />
+                                            </h:commandButton>
                                         </td>
                                         <td>
                                             <h:commandButton class="btn btn-success"

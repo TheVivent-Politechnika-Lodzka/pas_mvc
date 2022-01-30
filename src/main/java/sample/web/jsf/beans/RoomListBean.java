@@ -5,9 +5,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.HotelRoom;
 import sample.web.jsf.restclient.HotelRoomRestClient;
+import sample.web.jsf.utils.ContextUtils;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -49,8 +51,10 @@ public class RoomListBean {
         roomList = HotelRoomRestClient.getAll();
     }
 
-    public void deleteRoom(HotelRoom room){
-        HotelRoomRestClient.delete(room.getId());
+    public void deleteRoom(){
+        String id = ContextUtils.getRequestParams().get("deleteRoomId");
+
+        HotelRoomRestClient.delete(UUID.fromString(id));
         getAllRooms();
     }
 

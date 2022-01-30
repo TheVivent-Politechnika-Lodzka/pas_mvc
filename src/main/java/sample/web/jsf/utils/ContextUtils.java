@@ -4,6 +4,7 @@ package sample.web.jsf.utils;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * Przykład sposobu uzyskiwania dostępu z poziomu ziarna zarządzanego przez JSF do:
@@ -29,6 +30,10 @@ public class ContextUtils {
      */
     public static ExternalContext getContext(){
         return FacesContext.getCurrentInstance().getExternalContext();
+    }
+
+    public static Map<String, String> getRequestParams(){
+        return getContext().getRequestParameterMap();
     }
 
     /** 
