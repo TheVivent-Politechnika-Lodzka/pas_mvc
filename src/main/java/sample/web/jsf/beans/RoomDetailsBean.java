@@ -37,7 +37,7 @@ public class RoomDetailsBean implements Serializable {
 
             // TODO naprawić. Z jakiegoś powodu room jest tutaj null
 
-            System.out.println("####################### UserDetailsBean.getAllReservations() #########################");
+            System.out.println("####################### RoomDetailsBean.getAllReservations() #########################");
             System.out.println("####################### " + room + " #########################");
 
             String roomId = room.getId().toString();

@@ -21,25 +21,17 @@ public class EditUserBean implements Serializable {
     @Getter @Setter
     private User user;
 
+    @Getter @Setter
     private String passwordRepeat;
 
-    public String getPasswordRepeat() {
-        return passwordRepeat;
-    }
-
-    public void setPasswordRepeat(String passwordRepeat) {
-        this.passwordRepeat = passwordRepeat;
-    }
-
     public String save() {
-
 
         if (!(getPasswordRepeat().equals(user.getPassword()))){
             passwordRepeat = "";
             return "";
         }
 
-        if (user.getPassword() == ""){
+        if (user.getPassword().equals("")){
             user.setPassword(null);
         }
 
@@ -47,7 +39,6 @@ public class EditUserBean implements Serializable {
             throw new IllegalStateException("Proba ominiecia listy");
         }
 
-//        Response res = RestClient.target("user/" + user.getId().toString()).request().post(Entity.json(user));
         Response res = UserRestClient.update(user);
         user = null;
 

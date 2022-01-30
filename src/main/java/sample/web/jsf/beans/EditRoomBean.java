@@ -23,6 +23,7 @@ public class EditRoomBean implements Serializable {
     private HotelRoom room;
 
     public String save() {
+
         if (room == null) {
             throw new IllegalStateException("Proba ominiecia listy");
         }
