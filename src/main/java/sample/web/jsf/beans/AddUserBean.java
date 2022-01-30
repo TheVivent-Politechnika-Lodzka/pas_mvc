@@ -3,9 +3,9 @@ package sample.web.jsf.beans;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import sample.web.jsf.model.User;
-import sample.web.jsf.restclient.RestClient;
-import sample.web.jsf.restclient.UserRestClient;
+import sample.web.jsf.utils.RestClient;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -35,21 +35,27 @@ public class AddUserBean {
         this.passwordRepeat = passwordRepeat;
     }
 
-    public void save() {
+    public String save() {
 
         if (!(getPasswordRepeat().equals(user.getPassword())) || getPasswordRepeat() == null){
-            return;
+            return "";
         }
+
+        Response response;
 
         switch (user.getPermissionLevel()) {
             case "USER_ADMIN":
-                UserRestClient.createUserAdmin(user);
+                response = RestClient.target("user/createUserAdmin").request().post(Entity.json(user));
                 break;
             case "RESOURCE_ADMIN":
-                UserRestClient.createResourceAdmin(user);
+                response = RestClient.target("user/createResourceAdmin").request().post(Entity.json(user));
                 break;
             default:
-                UserRestClient.createClient(user);
+                response = RestClient.target("user/create").request().post(Entity.json(user));
+        }
+
+        if (response.getStatus() == 201) {
+            return "userList";
         }
 
         // TODO dodać przekierowanie do potwierdzenia

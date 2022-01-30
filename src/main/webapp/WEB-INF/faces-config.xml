@@ -84,4 +84,22 @@
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>/addUser.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>userList</from-outcome>
+            <to-view-id>/userList.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/addRoom.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>roomList</from-outcome>
+            <to-view-id>/roomList.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>

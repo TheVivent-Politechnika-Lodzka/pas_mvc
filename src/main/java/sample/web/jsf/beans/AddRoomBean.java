@@ -3,10 +3,13 @@ package sample.web.jsf.beans;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import sample.web.jsf.model.HotelRoom;
+import sample.web.jsf.model.User;
 import sample.web.jsf.restclient.HotelRoomRestClient;
-import sample.web.jsf.restclient.RestClient;
+import sample.web.jsf.utils.RestClient;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
@@ -21,8 +24,15 @@ public class AddRoomBean {
 
 
 
-    public void save() {
-        HotelRoomRestClient.create(room);
+    public String save() {
+
+        Response response = HotelRoomRestClient.create(room);
+
+        if (response.getStatus() == 201) {
+            return "roomList";
+        }
+
+        return "";
         // TODO dodać jakieś przekierowanie do potwierdzenia
         // return "roomConfirm";
     }

@@ -1,118 +1,144 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://java.sun.com/jsf/core"
-                template="./templates/MainTemplate.xhtml">
+<ui:composition
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  template="./templates/MainTemplate.xhtml"
+>
+  <ui:define name="top">
+    <li class="breadcrumb-item">
+      <a href="start.xhtml"> ${msg["start.breadcrumb"]} </a>
+    </li>
+    <li class="breadcrumb-item active">${msg['addUser.breadcrumb']}</li>
+  </ui:define>
 
-    <ui:define name="top">
-        <li class="breadcrumb-item">
-            <a href="start.xhtml">
-                ${msg["start.breadcrumb"]}
-            </a>
-        </li>
-        <li class="breadcrumb-item active">${msg['addUser.breadcrumb']}</li>
-    </ui:define>
+  <ui:define name="left">
+    <ui:include src="./templates/menu.xhtml" />
+  </ui:define>
 
-    <ui:define name="left">
-        <ui:include src="./templates/menu.xhtml" />
-    </ui:define>
-
-
-    <ui:define name="content">
-        <div class="container text-light" >
-
-            <div class="row">
-                <p class="fs-1 text-center mt-4">
-                    ${msg['addUser.breadcrumb']}
-                </p>
-                <div class="col-12 pt-0 mt-0">
-                    <h:form class="text-dark pt-0 mt-0">
-                        <div class="container-fluid">
-                            <div class="row mt-3">
-                                <div class="col-12 col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userLogin"
-                                                     placeholder="${msg['addUser.login']}"
-                                                     value="#{addUserBean.user.login}"
-                                                     required="true"/>
-                                        <label for="userLogin">${msg['addUser.login']}</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <h:inputText class="form-control" id="userName"
-                                                     placeholder="${msg['addUser.name']}"
-                                                     value="#{addUserBean.user.name}"
-                                                     required="true"/>
-                                        <label for="userName">${msg['addUser.name']}</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <h:inputText class="form-control"
-                                                     id="userSurname"
-                                                     placeholder="${msg['addUser.surname']}"
-                                                     value="#{addUserBean.user.surname}"
-                                                     required="true"/>
-                                        <label for="userSurname">${msg['addUser.surname']}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <h:inputSecret class="form-control"
-                                                     id="userPassword"
-                                                     placeholder="${msg['addUser.password']}"
-                                                     value="#{addUserBean.user.password}"
-                                                       required="true"/>
-                                        <label for="userPassword">${msg['addUser.password']}</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <h:inputSecret class="form-control"
-                                                     id="userPasswordConfirm"
-                                                     placeholder="${msg['addUser.passwordConfirm']}"
-                                                     value="#{addUserBean.passwordRepeat}"
-                                                       required="true"/>
-                                        <label for="userPasswordConfirm">${msg['addUser.passwordConfirm']}</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="form-floating mb-3">
-                                        <h:selectOneMenu value="#{addUserBean.user.permissionLevel}"
-                                                         class="form-select" id="userPermissionLevel">
-                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.user']}"
-                                                          itemValue="USER"/>
-                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.moderator']}"
-                                                          itemValue="RESOURCE_ADMIN"/>
-                                            <f:selectItem itemLabel="${msg['addUser.permissionLevel.admin']}"
-                                                          itemValue="USER_ADMIN"/>
-                                        </h:selectOneMenu>
-                                        <label for="userPermissionLevel">${msg['addUser.permissionLevel']}</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="float-end mb-2 pe-4 mb-4">
-                            <h:commandButton class="btn btn-warning me-2"
-                                             value="Anuluj"
-                                             action="userList.xhtml"
-                                             immediate=""/>
-
-                            <h:commandButton class="btn btn-success"
-                                             value="${msg['addUser.button']}"
-                                             action="#{addUserBean.save}" />
-                        </div>
-
-                    </h:form>
+  <ui:define name="content">
+    <div class="container text-light">
+      <div class="row">
+        <p class="fs-1 text-center mt-4">${msg['addUser.breadcrumb']}</p>
+        <div class="col-12 pt-0 mt-0">
+          <h:form class="text-dark pt-0 mt-0">
+            <div class="container-fluid">
+              <div class="row mt-3">
+                <div class="col-12 col-md-4">
+                  <div class="form-floating mb-3">
+                    <h:inputText
+                      class="form-control"
+                      id="userLogin"
+                      placeholder="${msg['addUser.login']}"
+                      value="#{addUserBean.user.login}"
+                      required="true"
+                      pattern="^[a-zA-Z0-9]{3,20}"
+                    />
+                    <label for="userLogin">${msg['addUser.login']}</label>
+                  </div>
                 </div>
+                <div class="col-12 col-md-4">
+                  <div class="form-floating mb-3">
+                    <h:inputText
+                      class="form-control"
+                      id="userName"
+                      placeholder="${msg['addUser.name']}"
+                      value="#{addUserBean.user.name}"
+                      required="true"
+                      pattern="^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]{3,20}"
+                    />
+                    <label for="userName">${msg['addUser.name']}</label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="form-floating mb-3">
+                    <h:inputText
+                      class="form-control"
+                      id="userSurname"
+                      placeholder="${msg['addUser.surname']}"
+                      value="#{addUserBean.user.surname}"
+                      required="true"
+                      pattern="^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]{3,20}"
+                    />
+                    <label for="userSurname">${msg['addUser.surname']}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-4">
+                  <div class="form-floating mb-3">
+                    <h:inputSecret
+                      class="form-control"
+                      id="userPassword"
+                      placeholder="${msg['addUser.password']}"
+                      value="#{addUserBean.user.password}"
+                      required="true"
+                      pattern="^[a-zA-Z0-9]{6,20}"
+                    />
+                    <label for="userPassword">${msg['addUser.password']}</label>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="form-floating mb-3">
+                    <h:inputSecret
+                      class="form-control"
+                      id="userPasswordConfirm"
+                      placeholder="${msg['addUser.passwordConfirm']}"
+                      value="#{addUserBean.passwordRepeat}"
+                      required="true"
+                      pattern="^[a-zA-Z0-9]{6,20}"
+                    />
+                    <label for="userPasswordConfirm"
+                      >${msg['addUser.passwordConfirm']}</label
+                    >
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="form-floating mb-3">
+                    <h:selectOneMenu
+                      value="#{addUserBean.user.permissionLevel}"
+                      class="form-select"
+                      id="userPermissionLevel"
+                    >
+                      <f:selectItem
+                        itemLabel="${msg['addUser.permissionLevel.user']}"
+                        itemValue="USER"
+                      />
+                      <f:selectItem
+                        itemLabel="${msg['addUser.permissionLevel.moderator']}"
+                        itemValue="RESOURCE_ADMIN"
+                      />
+                      <f:selectItem
+                        itemLabel="${msg['addUser.permissionLevel.admin']}"
+                        itemValue="USER_ADMIN"
+                      />
+                    </h:selectOneMenu>
+                    <label for="userPermissionLevel"
+                      >${msg['addUser.permissionLevel']}</label
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="float-end mb-2 pe-4 mb-4">
+              <h:commandButton
+                class="btn btn-warning me-2"
+                value="Anuluj"
+                action="userList.xhtml"
+                immediate=""
+              />
 
+              <h:commandButton
+                class="btn btn-success"
+                value="${msg['addUser.button']}"
+                action="#{addUserBean.save}"
+              />
+            </div>
+          </h:form>
         </div>
-    </ui:define>
-
+      </div>
+    </div>
+  </ui:define>
 </ui:composition>
