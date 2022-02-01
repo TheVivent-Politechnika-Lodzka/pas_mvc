@@ -11,7 +11,7 @@ public class RestClient {
     public final static Client client = ClientBuilder.newClient();
 
     public static WebTarget target(String url) {
-        return client.target("http://localhost:2137/api/" + url);
+        return client.target("http://localhost:8080/api/" + url);
     }
 
 
