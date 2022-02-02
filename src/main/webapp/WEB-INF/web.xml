@@ -8,7 +8,6 @@
     <context-param>
         <param-name>application.description</param-name>
         <param-value>Przykładowa aplikacja JSF</param-value>
-
     </context-param>
 <!--    <context-param>-->
 <!--        <param-name>jersey.config.jsonFeature</param-name>-->
@@ -18,8 +17,28 @@
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
-
     </servlet>
+
+    <!-- SECURITY -->
+<!--    <security-role>-->
+<!--        <role-name>CLIENT</role-name>-->
+<!--    </security-role>-->
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>addUser</web-resource-name>-->
+<!--            <url-pattern>/faces/addUser.xhtml</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--    </security-constraint>-->
+<!--    <login-config>-->
+<!--        <auth-method>FORM</auth-method>-->
+<!--        <realm-name>file</realm-name>-->
+<!--        <form-login-config>-->
+<!--            <form-login-page>/login.xhtml</form-login-page>-->
+<!--            <form-error-page>/start.xhtml</form-error-page>-->
+<!--        </form-login-config>-->
+<!--    </login-config>-->
+    
+    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>

@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="./templates/MainTemplate.xhtml">
+
+    <ui:define name="top">
+        <li class="breadcrumb-item">
+            <a href="start.xhtml">
+                ${msg["start.breadcrumb"]}
+            </a>
+        </li>
+        <li class="breadcrumb-item active">${msg['login.breadcrumb']}</li>
+    </ui:define>
+
+    <ui:define name="left">
+        <ui:include src="./templates/menu.xhtml" />
+    </ui:define>
+
+
+    <ui:define name="content">
+        <div class="container text-light">
+
+            <div class="row">
+                <p class="fs-1 text-center mt-4">
+                    ${msg['login.breadcrumb']}
+                </p>
+                <div class="col-12">
+                    <h:form class="text-dark">
+                        <div class="container-fluid">
+                            <div class="row mt-3">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <h:inputText class="form-control"
+                                                     id="userLogin"
+                                                     placeholder="${msg['login.userLogin']}"
+                                                     value="#{loginBean.credentialsData.login}"
+                                                     required="true"
+                                                     pattern="^[a-zA-Z0-9]{3,20}" />
+                                        <label for="userLogin">${msg['login.userLogin']}</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-floating mb-3">
+                                        <h:inputSecret
+                                                class="form-control"
+                                                id="userPassword"
+                                                placeholder="${msg['login.password']}"
+                                                value="#{loginBean.credentialsData.password}"
+                                                required="true"
+                                                pattern="^[a-zA-Z0-9]{6,20}"
+                                        />
+                                        <label for="userPassword">${msg['login.password']}</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="float-end mb-2 pe-4 mb-4">
+                                <h:commandButton class="btn btn-warning me-2"
+                                                 value="Anuluj"
+                                                 action="start.xhtml" />
+
+                                <h:commandButton class="btn btn-success float-end mb-2"
+                                             value="${msg['login.saveButton']}"
+                                             action="#{loginBean.login}" />
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
+        </div>
+    </ui:define>
+
+</ui:composition>

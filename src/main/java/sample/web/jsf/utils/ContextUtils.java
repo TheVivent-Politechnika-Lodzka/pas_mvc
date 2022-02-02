@@ -36,21 +36,25 @@ public class ContextUtils {
         return getContext().getRequestParameterMap();
     }
 
-    /** 
+    /**
      * Wyszukuje atrybut o zadanej nazwie w kontekście aplikacji
      */
     public static Object getApplicationAttribute(String attributeName){
         return getContext().getApplicationMap().get(attributeName);
     }
 
-    /** 
+    /**
      * Wyszukuje atrybut o zadanej nazwie w kontekście sesji
      */
     public static Object getSessionAttribute(String attributeName){
         return getContext().getSessionMap().get(attributeName);
     }
 
-    /** 
+    public static void setSessionAttribute(String attributeName, Object attributeValue){
+        getContext().getSessionMap().put(attributeName, attributeValue);
+    }
+
+    /**
      * Wyszukuje atrybut o zadanej nazwie w kontekście żądania
      */
     public static Object getRequestAttribute(String attributeName){

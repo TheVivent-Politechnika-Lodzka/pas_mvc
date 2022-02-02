@@ -13,28 +13,36 @@ import java.util.UUID;
 public class HotelRoomRestClient {
 
     public static HotelRoom getById(UUID id) {
-        return RestClient.target("room/" + id.toString()).request().get(HotelRoom.class);
+        return RestClient.target("room/" + id.toString()).request()
+                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(HotelRoom.class);
     }
 
     public static HotelRoom getByNumber(int number) {
-        return RestClient.target("room/number/" + number).request().get(HotelRoom.class);
+        return RestClient.target("room/number/" + number).request()
+                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(HotelRoom.class);
     }
 
     public static Response delete(UUID id) {
-        return RestClient.target("room/" + id.toString()).request().delete();
+        return RestClient.target("room/" + id.toString()).request()
+                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).delete();
     }
 
     public static List<HotelRoom> getAll() {
-        return RestClient.target("room/all").request().get(new GenericType<List<HotelRoom>>(){});
+        System.out.println(RestClient.getJWT());
+
+        return RestClient.target("room/all").request()
+                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(new GenericType<List<HotelRoom>>(){});
     }
 
     public static Response update(HotelRoom room) {
         String idStr = room.getId().toString();
-        return RestClient.target("room/" + idStr ).request().post(Entity.json(room));
+        return RestClient.target("room/" + idStr ).request()
+                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).post(Entity.json(room));
     }
 
     public static Response create(HotelRoom room) {
-        return RestClient.target("room").request().post(Entity.json(room));
+        return RestClient.target("room").request()
+                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).post(Entity.json(room));
     }
 
 }
