@@ -33,7 +33,7 @@ public class ReservationListBean {
 
     @PostConstruct
     public void init() {
-        if(JwtUtils.getUserRole().equals("CLIENT")) {
+        if("CLIENT".equals(JwtUtils.getUserRole())) {
             userId = JwtUtils.getUserId();
         }
         search();
