@@ -11,10 +11,7 @@
     <li class="breadcrumb-item">
       <a href="start.xhtml"> ${msg["start.breadcrumb"]} </a>
     </li>
-    <li class="breadcrumb-item">
-      <a href="userList.xhtml"> ${msg["userList.breadcrumb"]} </a>
-    </li>
-    <li class="breadcrumb-item active">${msg['editUser.breadcrumb']}</li>
+    <li class="breadcrumb-item active">${msg['userSettings.breadcrumb']}</li>
   </ui:define>
 
   <ui:define name="left">
@@ -24,7 +21,7 @@
   <ui:define name="content">
     <div class="container text-light">
       <div class="row">
-        <p class="fs-1 text-center mt-4">${msg['editUser.breadcrumb']}</p>
+        <p class="fs-1 text-center mt-4">${msg['userSettings.breadcrumb']}</p>
         <div class="col-12 pt-0 mt-0">
           <h:form class="text-dark pt-0 mt-0">
             <div class="container-fluid">
@@ -93,13 +90,13 @@
                     <h:inputSecret
                             class="form-control"
                             id="userPasswordConfirm"
-                            placeholder="${msg['userSettingsBean.passwordConfirm']}"
+                            placeholder="${msg['editUser.passwordConfirm']}"
                             value="#{userSettingsBean.passwordRepeat}"
                             required="false"
                             pattern="^[a-zA-Z0-9]{6,20}"
                     />
                     <label for="userPasswordConfirm"
-                    >${msg['userSettingsBean.passwordConfirm']}</label
+                    >${msg['editUser.passwordConfirm']}</label
                     >
                   </div>
                 </div>
@@ -111,8 +108,6 @@
                       value="Anuluj"
                       action="userList.xhtml"
               />
-
-              <!--                     // TODO zrobić poprawne potwierdzenie hasła. trzeba by przejrzeć wykład z karbo jak to dobrze zrobić-->
 
               <h:commandButton
                       class="btn btn-success"
