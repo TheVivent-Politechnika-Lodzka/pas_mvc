@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.ws.rs.core.GenericType;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -21,7 +22,7 @@ public class ReservationListBean {
     private List<Reservation> reservations;
 
     @Getter @Setter
-    private String userId = JwtUtils.getUserId();
+    private String userId = "";
 
     @Getter @Setter
     private String roomId = "";
@@ -32,6 +33,9 @@ public class ReservationListBean {
 
     @PostConstruct
     public void init() {
+        if(JwtUtils.getUserRole().equals("CLIENT")) {
+            userId = JwtUtils.getUserId();
+        }
         search();
     }
 
@@ -40,7 +44,7 @@ public class ReservationListBean {
             reservations = ReservationRestClient.search(userId, roomId, archived);
         }
         catch (Exception e) {
-            reservations.clear();
+            reservations = new ArrayList<>();
         }
     }
 
