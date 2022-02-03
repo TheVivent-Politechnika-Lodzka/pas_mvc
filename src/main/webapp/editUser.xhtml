@@ -107,19 +107,17 @@
             </div>
             <div class="float-end mb-2 pe-4 mb-4">
               <h:commandButton
+                      class="btn btn-success"
+                      value="${msg['editUser.button']}"
+                      action="#{editUserBean.save}"
+              />
+              <h:commandButton
                 class="btn btn-warning me-2"
                 value="Anuluj"
                 action="userList.xhtml"
                 immediate=""
               />
 
-              <!--                     // TODO zrobić poprawne potwierdzenie hasła. trzeba by przejrzeć wykład z karbo jak to dobrze zrobić-->
-
-              <h:commandButton
-                class="btn btn-success"
-                value="${msg['editUser.button']}"
-                action="#{editUserBean.save}"
-              />
             </div>
           </h:form>
         </div>

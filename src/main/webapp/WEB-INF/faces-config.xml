@@ -33,6 +33,7 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+
     <navigation-rule>
         <from-view-id>/editUser.xhtml</from-view-id>
         <navigation-case>
@@ -66,6 +67,7 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+
     <navigation-rule>
         <from-view-id>/editRoom.xhtml</from-view-id>
         <navigation-case>
