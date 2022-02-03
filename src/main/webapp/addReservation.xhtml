@@ -38,6 +38,7 @@
                                                      placeholder="${msg['addReservation.userId']}"
                                                      value="#{addReservationBean.userId}"
                                                      required="true"
+                                                     disabled="#{utilsBean.client}"
                                                      pattern="^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89AB][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}"/>
                                         <label for="userId">${msg['addReservation.userId']}</label>
                                     </div>

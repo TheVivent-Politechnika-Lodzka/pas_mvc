@@ -13,45 +13,81 @@
             <li class="nav-item">
                 <h:outputLink class="nav-link" value="start.xhtml">PAS</h:outputLink>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Użytkownicy
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarUserDropdown">
-                    <li>
-                        <h:outputLink class="dropdown-item" value="userList.xhtml">Lista</h:outputLink>
-                    </li>
-                    <li>
-                        <h:outputLink class="dropdown-item" value="addUser.xhtml">Dodaj</h:outputLink>
-                    </li>
-                </ul>
+            <f:subview id="nbud" rendered="#{utilsBean.isUserInRole('USER_ADMIN')}">
 
-            </li>
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Użytkownicy
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarUserDropdown">
+                        <li>
+                            <h:outputLink class="dropdown-item" value="userList.xhtml">Lista</h:outputLink>
+                        </li>
+                        <li>
+                            <h:outputLink class="dropdown-item" value="addUser.xhtml">Dodaj</h:outputLink>
+                        </li>
+                    </ul>
+
+                </li>
+
+            </f:subview>
+
+            <f:subview id="nbrd" rendered="#{utilsBean.logedIn}">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarRoomDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Pokoje
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarRoomDropdown">
+                        <li>
+                            <h:outputLink class="dropdown-item" value="roomList.xhtml">Lista</h:outputLink>
+                        </li>
+                        <li>
+                            <h:outputLink class="dropdown-item" value="addRoom.xhtml" rendered="#{utilsBean.isUserInRole('RESOURCE_ADMIN')}">Dodaj</h:outputLink>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarReservationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Rezerwacje
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarReservationDropdown">
+                        <li>
+                            <h:outputLink class="dropdown-item" value="reservationList.xhtml">Lista</h:outputLink>
+                        </li>
+                        <li>
+                            <h:outputLink class="dropdown-item" value="addReservation.xhtml">Dodaj</h:outputLink>
+                        </li>
+                    </ul>
+                </li>
+
+            </f:subview>
+
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarRoomDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Pokoje
+            <a class="nav-link dropdown-toggle" href="#" id="navbarReservationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    #{utilsBean.login}
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarRoomDropdown">
-                    <li>
-                        <h:outputLink class="dropdown-item" value="roomList.xhtml">Lista</h:outputLink>
-                    </li>
-                    <li>
-                        <h:outputLink class="dropdown-item" value="addRoom.xhtml">Dodaj</h:outputLink>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarReservationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Rezerwacje
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarReservationDropdown">
-                    <li>
-                        <h:outputLink class="dropdown-item" value="reservationList.xhtml">Lista</h:outputLink>
-                    </li>
-                    <li>
-                        <h:outputLink class="dropdown-item" value="addReservation.xhtml">Dodaj</h:outputLink>
-                    </li>
-                </ul>
+            <ul class="dropdown-menu" aria-labelledby="navbarReservationDropdown">
+            <h:form>
+                <li class="mb-2 text-center">
+                    <h:commandButton class="btn btn-primary"
+                                     value="Settings"
+                                     action="#{utilsBean.userSettings}" />
+                </li>
+                <li class="text-center">
+
+                    <h:commandButton class="btn btn-danger"
+                                     rendered="#{utilsBean.logedIn}"
+                                     value="Logout"
+                                     action="#{utilsBean.invalidateSession}" />
+
+                    <h:commandButton class="btn btn-danger"
+                                     rendered="#{not utilsBean.logedIn}"
+                                     value="Log in"
+                                     action="/login.xhtml" />
+                </li>
+            </h:form>
+        </ul>
             </li>
         </ul>
     </div>

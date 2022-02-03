@@ -59,13 +59,14 @@
                             </div>
 
                             <div class="float-end mb-2 pe-4 mb-4">
+                                <h:commandButton class="btn btn-success float-end mb-2"
+                                                 value="${msg['login.saveButton']}"
+                                                 action="#{loginBean.login}" />
+
                                 <h:commandButton class="btn btn-warning me-2"
                                                  value="Anuluj"
                                                  action="start.xhtml" />
 
-                                <h:commandButton class="btn btn-success float-end mb-2"
-                                             value="${msg['login.saveButton']}"
-                                             action="#{loginBean.login}" />
                             </div>
                         </div>
                     </h:form>

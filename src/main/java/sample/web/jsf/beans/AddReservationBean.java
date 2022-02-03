@@ -6,17 +6,20 @@ import lombok.Setter;
 import sample.web.jsf.model.Reservation;
 import sample.web.jsf.restclient.ReservationRestClient;
 import sample.web.jsf.restclient.RestClient;
+import sample.web.jsf.utils.JwtUtils;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Named
-@RequestScoped
+@SessionScoped
 @NoArgsConstructor
-public class AddReservationBean {
+public class AddReservationBean implements Serializable {
 
     @Getter
     private final Reservation reservation = new Reservation();
@@ -25,7 +28,7 @@ public class AddReservationBean {
     private String roomId = "";
 
     @Getter @Setter
-    private String userId = "";
+    private String userId = JwtUtils.getUserId();
 
 
     public String save() {

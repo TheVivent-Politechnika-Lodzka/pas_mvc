@@ -5,6 +5,7 @@ import lombok.Setter;
 import sample.web.jsf.model.Reservation;
 import sample.web.jsf.restclient.ReservationRestClient;
 import sample.web.jsf.restclient.RestClient;
+import sample.web.jsf.utils.JwtUtils;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -20,7 +21,7 @@ public class ReservationListBean {
     private List<Reservation> reservations;
 
     @Getter @Setter
-    private String userId = "";
+    private String userId = JwtUtils.getUserId();
 
     @Getter @Setter
     private String roomId = "";
@@ -31,7 +32,7 @@ public class ReservationListBean {
 
     @PostConstruct
     public void init() {
-        getAllReservations();
+        search();
     }
 
     public void search() {
