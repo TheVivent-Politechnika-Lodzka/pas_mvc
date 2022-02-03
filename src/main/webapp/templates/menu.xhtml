@@ -72,7 +72,8 @@
                 <li class="mb-2 text-center">
                     <h:commandButton class="btn btn-primary"
                                      value="Settings"
-                                     action="#{utilsBean.userSettings}" />
+                                     action="#{utilsBean.userSettings}"
+                                     rendered="#{utilsBean.logedIn}"/>
                 </li>
                 <li class="text-center">
 

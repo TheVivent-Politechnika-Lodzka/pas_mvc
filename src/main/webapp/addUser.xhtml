@@ -123,17 +123,16 @@
               </div>
             </div>
             <div class="float-end mb-2 pe-4 mb-4">
-              <h:commandButton
-                class="btn btn-warning me-2"
-                value="Anuluj"
-                action="userList.xhtml"
-                immediate=""
-              />
 
               <h:commandButton
-                class="btn btn-success"
-                value="${msg['addUser.button']}"
-                action="#{addUserBean.save}"
+                      class="btn btn-success"
+                      value="${msg['addUser.button']}"
+                      action="#{addUserBean.save}"
+              />
+              <h:commandButton
+                      class="btn btn-warning me-2"
+                      value="Anuluj"
+                      action="userList.xhtml"
               />
             </div>
           </h:form>
