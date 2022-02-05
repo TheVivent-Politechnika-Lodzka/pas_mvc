@@ -8,6 +8,7 @@ import sample.web.jsf.restclient.RestClient;
 import sample.web.jsf.restclient.UserRestClient;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
@@ -17,6 +18,9 @@ import java.io.Serializable;
 @SessionScoped
 @NoArgsConstructor
 public class EditUserBean implements Serializable {
+
+    @Inject
+    private UserRestClient userRestClient;
 
     @Getter @Setter
     private User user;
@@ -39,7 +43,7 @@ public class EditUserBean implements Serializable {
             throw new IllegalStateException("Proba ominiecia listy");
         }
 
-        Response res = UserRestClient.update(user);
+        Response res = userRestClient.update(user);
         user = null;
 
         if (res.getStatus() != 200) {

@@ -1,8 +1,10 @@
 package sample.web.jsf.restclient;
 
 import sample.web.jsf.model.Reservation;
+import sample.web.jsf.utils.JwtStore;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
@@ -12,39 +14,45 @@ import java.util.UUID;
 @ApplicationScoped
 public class ReservationRestClient {
 
+    @Inject
+    private RestClient restClient;
 
-    public static Reservation getById(UUID id) {
+    @Inject
+    private JwtStore jwtStore;
+
+
+    public Reservation getById(UUID id) {
         String idStr = id.toString();
-        return RestClient.target("reservation/" + idStr).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(Reservation.class);
+        return restClient.target("reservation/" + idStr).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(Reservation.class);
     }
 
-    public static Response create(UUID userId, UUID roomId, Reservation reservation) {
-        Response response = RestClient.target("reservation/" + userId + "/" + roomId)
+    public Response create(UUID userId, UUID roomId, Reservation reservation) {
+        Response response = restClient.target("reservation/" + userId + "/" + roomId)
                 .request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT())
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer())
                 .post(Entity.json(reservation));
         return response;
     }
 
-    public static List<Reservation> getAll() {
-        return RestClient.target("reservation/all").request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(new GenericType<List<Reservation>>(){});
+    public List<Reservation> getAll() {
+        return restClient.target("reservation/all").request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(new GenericType<List<Reservation>>(){});
     }
 
-    public static List<Reservation> search(String userId, String roomId, boolean includeArchived){
-        return RestClient.target("reservation/search")
+    public List<Reservation> search(String userId, String roomId, boolean includeArchived){
+        return restClient.target("reservation/search")
                 .queryParam("clientId", userId)
                 .queryParam("roomId", roomId)
                 .queryParam("archived", includeArchived)
                 .request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(new GenericType<List<Reservation>>() {});
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(new GenericType<List<Reservation>>() {});
     }
 
-    public static Response endReservation(UUID id) {
+    public Response endReservation(UUID id) {
         String idStr = id.toString();
-        return RestClient.target("reservation/end/" + idStr).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).head();
+        return restClient.target("reservation/end/" + idStr).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).head();
     }
 
 

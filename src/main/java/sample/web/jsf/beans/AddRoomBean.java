@@ -9,6 +9,7 @@ import sample.web.jsf.model.User;
 import sample.web.jsf.restclient.HotelRoomRestClient;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
@@ -18,6 +19,9 @@ import javax.ws.rs.core.Response;
 @NoArgsConstructor
 public class AddRoomBean {
 
+    @Inject
+    private HotelRoomRestClient hotelRoomRestClient;
+
     @Getter
     private HotelRoom room = new HotelRoom();
 
@@ -25,7 +29,7 @@ public class AddRoomBean {
 
     public String save() {
 
-        Response response = HotelRoomRestClient.create(room);
+        Response response = hotelRoomRestClient.create(room);
 
         if (response.getStatus() == 201) {
             return "roomList";

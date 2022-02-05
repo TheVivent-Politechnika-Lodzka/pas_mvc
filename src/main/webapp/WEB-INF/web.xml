@@ -20,15 +20,24 @@
     </servlet>
 
     <!-- SECURITY -->
-<!--    <security-role>-->
-<!--        <role-name>CLIENT</role-name>-->
-<!--    </security-role>-->
-<!--    <security-constraint>-->
-<!--        <web-resource-collection>-->
-<!--            <web-resource-name>addUser</web-resource-name>-->
-<!--            <url-pattern>/faces/addUser.xhtml</url-pattern>-->
-<!--        </web-resource-collection>-->
-<!--    </security-constraint>-->
+    <security-role>
+        <role-name>CLIENT</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USER_ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <role-name>RESOURCE_ADMIN</role-name>
+    </security-role>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>addUser</web-resource-name>
+            <url-pattern>/faces/addUser.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER_ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
 <!--    <login-config>-->
 <!--        <auth-method>FORM</auth-method>-->
 <!--        <realm-name>file</realm-name>-->

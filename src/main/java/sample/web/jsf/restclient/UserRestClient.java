@@ -1,8 +1,10 @@
 package sample.web.jsf.restclient;
 
 import sample.web.jsf.model.User;
+import sample.web.jsf.utils.JwtStore;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
@@ -12,58 +14,64 @@ import java.util.UUID;
 @ApplicationScoped
 public class UserRestClient {
 
-    public static User getByLogin(String login) {
-        return RestClient.target("/user/login" + login).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(User.class);
+    @Inject
+    private RestClient restClient;
+
+    @Inject
+    private JwtStore jwtStore;
+
+    public User getByLogin(String login) {
+        return restClient.target("/user/login" + login).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(User.class);
     }
 
-    public static User getById(UUID id) {
+    public User getById(UUID id) {
         String idStr = id.toString();
-        return RestClient.target("user/" + idStr).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(User.class);
+        return restClient.target("user/" + idStr).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(User.class);
     }
 
-    public static Response activate(UUID id) {
+    public Response activate(UUID id) {
         String idStr = id.toString();
-        return RestClient.target("user/activate/" + idStr).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).head();
+        return restClient.target("user/activate/" + idStr).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).head();
     }
 
-    public static Response deactivate(UUID id) {
+    public Response deactivate(UUID id) {
         String idStr = id.toString();
-        return RestClient.target("user/deactivate/" + idStr).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).head();
+        return restClient.target("user/deactivate/" + idStr).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).head();
     }
 
-    public static List<User> getAll() {
-        return RestClient.target("user/all").request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(new GenericType<List<User>>(){});
+    public List<User> getAll() {
+        return restClient.target("user/all").request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(new GenericType<List<User>>(){});
     }
 
-    public static List<User> searchByLogin(String login) {
-        return RestClient.target("user/search/" + login).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(new GenericType<List<User>>(){});
+    public List<User> searchByLogin(String login) {
+        return restClient.target("user/search/" + login).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(new GenericType<List<User>>(){});
     }
 
-    public static Response update(User user) {
+    public Response update(User user) {
         String idStr = user.getId().toString();
-        return RestClient.target("user/" + idStr).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).post(Entity.json(user));
+        return restClient.target("user/" + idStr).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).post(Entity.json(user));
     }
 
-    public static Response createClient(User user) {
-        return RestClient.target("user/create").request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).post(Entity.json(user));
+    public Response createClient(User user) {
+        return restClient.target("user/create").request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).post(Entity.json(user));
     }
 
-    public static Response createUserAdmin(User user) {
-        return RestClient.target("user/createUserAdmin").request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).post(Entity.json(user));
+    public Response createUserAdmin(User user) {
+        return restClient.target("user/createUserAdmin").request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).post(Entity.json(user));
     }
 
-    public static Response createResourceAdmin(User user) {
-        return RestClient.target("user/createResourceAdmin").request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).post(Entity.json(user));
+    public Response createResourceAdmin(User user) {
+        return restClient.target("user/createResourceAdmin").request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).post(Entity.json(user));
     }
 
 }

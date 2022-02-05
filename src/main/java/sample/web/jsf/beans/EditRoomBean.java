@@ -8,6 +8,7 @@ import sample.web.jsf.restclient.HotelRoomRestClient;
 import sample.web.jsf.restclient.RestClient;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
@@ -19,6 +20,9 @@ import java.io.Serializable;
 public class EditRoomBean implements Serializable {
 
 
+    @Inject
+    private HotelRoomRestClient hotelRoomRestClient;
+
     @Getter @Setter
     private HotelRoom room;
 
@@ -28,7 +32,7 @@ public class EditRoomBean implements Serializable {
             throw new IllegalStateException("Proba ominiecia listy");
         }
 
-        Response res = HotelRoomRestClient.update(room);
+        Response res = hotelRoomRestClient.update(room);
         room = null;
 
         if (res.getStatus() != 200) {

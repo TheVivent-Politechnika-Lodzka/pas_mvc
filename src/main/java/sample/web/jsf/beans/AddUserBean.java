@@ -8,6 +8,7 @@ import sample.web.jsf.restclient.UserRestClient;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.core.Response;
 
@@ -15,6 +16,9 @@ import javax.ws.rs.core.Response;
 @RequestScoped
 @NoArgsConstructor
 public class AddUserBean {
+
+    @Inject
+    private UserRestClient userRestClient;
 
     @Getter
     User user = new User();
@@ -44,13 +48,13 @@ public class AddUserBean {
 
         switch (user.getPermissionLevel()) {
             case "USER_ADMIN":
-                response = UserRestClient.createUserAdmin(user);
+                response = userRestClient.createUserAdmin(user);
                 break;
             case "RESOURCE_ADMIN":
-                response = UserRestClient.createResourceAdmin(user);
+                response = userRestClient.createResourceAdmin(user);
                 break;
             default:
-                response = UserRestClient.createClient(user);
+                response = userRestClient.createClient(user);
         }
 
         if (response.getStatus() == 201) {

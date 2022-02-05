@@ -3,7 +3,7 @@ package sample.web.jsf.beans;
 import sample.web.jsf.model.User;
 import sample.web.jsf.restclient.UserRestClient;
 import sample.web.jsf.utils.ContextUtils;
-import sample.web.jsf.utils.JwtUtils;
+import sample.web.jsf.utils.JwtStore;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -15,6 +15,12 @@ import java.util.UUID;
 public class UtilsBean {
 
     @Inject
+    JwtStore jwtStore;
+
+    @Inject
+    private UserRestClient userRestClient;
+
+    @Inject
     private UserSettingsBean userSettingsBean;
 
     public String invalidateSession() {
@@ -24,14 +30,14 @@ public class UtilsBean {
     }
 
     public String userSettings(){
-        UUID uuid = UUID.fromString(JwtUtils.getUserId());
-        User user = UserRestClient.getById(uuid);
+        UUID uuid = UUID.fromString(jwtStore.getUserId());
+        User user = userRestClient.getById(uuid);
         userSettingsBean.setUser(user);
         return "userSettings";
     }
 
     public String getLogin(){
-        String user = JwtUtils.getUserName();
+        String user = jwtStore.getLogin();
         if (user == null || user.isEmpty()){
             return "Konto";
         }
@@ -39,15 +45,15 @@ public class UtilsBean {
     }
 
     public String getLvl(){
-        return JwtUtils.getUserRole();
+        return jwtStore.getRole();
     }
 
     public boolean isClient(){
-        return "CLIENT".equals(JwtUtils.getUserRole());
+        return "CLIENT".equals(jwtStore.getRole());
     }
 
     public boolean isLogedIn(){
-        String user = JwtUtils.getUserName();
+        String user = jwtStore.getLogin();
         return user != null && !user.isEmpty();
     }
 
@@ -55,7 +61,7 @@ public class UtilsBean {
         if(xxx==null){
             return false;
         }
-        return xxx.equals(JwtUtils.getUserRole());
+        return xxx.equals(jwtStore.getRole());
     }
 
 

@@ -1,8 +1,10 @@
 package sample.web.jsf.restclient;
 
 import sample.web.jsf.model.HotelRoom;
+import sample.web.jsf.utils.JwtStore;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
@@ -12,37 +14,43 @@ import java.util.UUID;
 @ApplicationScoped
 public class HotelRoomRestClient {
 
-    public static HotelRoom getById(UUID id) {
-        return RestClient.target("room/" + id.toString()).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(HotelRoom.class);
+    @Inject
+    private RestClient restClient;
+
+    @Inject
+    JwtStore jwtStore;
+
+
+    public HotelRoom getById(UUID id) {
+        return restClient.target("room/" + id.toString()).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(HotelRoom.class);
     }
 
-    public static HotelRoom getByNumber(int number) {
-        return RestClient.target("room/number/" + number).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(HotelRoom.class);
+    public HotelRoom getByNumber(int number) {
+        return restClient.target("room/number/" + number).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(HotelRoom.class);
     }
 
-    public static Response delete(UUID id) {
-        return RestClient.target("room/" + id.toString()).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).delete();
+    public Response delete(UUID id) {
+        return restClient.target("room/" + id.toString()).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).delete();
     }
 
-    public static List<HotelRoom> getAll() {
-        System.out.println(RestClient.getJWT());
+    public List<HotelRoom> getAll() {
 
-        return RestClient.target("room/all").request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).get(new GenericType<List<HotelRoom>>(){});
+        return restClient.target("room/all").request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(new GenericType<List<HotelRoom>>(){});
     }
 
-    public static Response update(HotelRoom room) {
+    public Response update(HotelRoom room) {
         String idStr = room.getId().toString();
-        return RestClient.target("room/" + idStr ).request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).post(Entity.json(room));
+        return restClient.target("room/" + idStr ).request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).post(Entity.json(room));
     }
 
-    public static Response create(HotelRoom room) {
-        return RestClient.target("room").request()
-                .header(RestClient.AUTHORIZATION_HEADER, RestClient.getJWT()).post(Entity.json(room));
+    public Response create(HotelRoom room) {
+        return restClient.target("room").request()
+                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).post(Entity.json(room));
     }
 
 }

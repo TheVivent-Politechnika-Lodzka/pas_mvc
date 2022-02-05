@@ -22,6 +22,9 @@ import java.util.List;
 public class UserListBean implements Serializable {
 
     @Inject
+    private UserRestClient userRestClient;
+
+    @Inject
     private EditUserBean editUserBean;
 
     @Inject
@@ -52,10 +55,10 @@ public class UserListBean implements Serializable {
         boolean isActive = user.isActive();
 
         if (isActive) {
-            UserRestClient.deactivate(user.getId());
+            userRestClient.deactivate(user.getId());
         }
         else {
-            UserRestClient.activate(user.getId());
+            userRestClient.activate(user.getId());
         }
         search();
     }
@@ -63,10 +66,10 @@ public class UserListBean implements Serializable {
     public void search() {
 
         if (search.isEmpty()) {
-            foundUsers = UserRestClient.getAll();
+            foundUsers = userRestClient.getAll();
         }
         else {
-            foundUsers = UserRestClient.searchByLogin(search);
+            foundUsers = userRestClient.searchByLogin(search);
         }
 
     }

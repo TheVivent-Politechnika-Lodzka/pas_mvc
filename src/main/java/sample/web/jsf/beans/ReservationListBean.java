@@ -4,19 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 import sample.web.jsf.model.Reservation;
 import sample.web.jsf.restclient.ReservationRestClient;
-import sample.web.jsf.restclient.RestClient;
-import sample.web.jsf.utils.JwtUtils;
+import sample.web.jsf.utils.JwtStore;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.core.GenericType;
 import java.util.ArrayList;
 import java.util.List;
 
 @Named
 @RequestScoped
 public class ReservationListBean {
+
+    @Inject
+    private JwtStore jwtStore;
+
+    @Inject
+    private ReservationRestClient reservationRestClient;
 
     @Getter
     private List<Reservation> reservations;
@@ -33,15 +38,15 @@ public class ReservationListBean {
 
     @PostConstruct
     public void init() {
-        if("CLIENT".equals(JwtUtils.getUserRole())) {
-            userId = JwtUtils.getUserId();
+        if("CLIENT".equals(jwtStore.getRole())) {
+            userId = jwtStore.getUserId();
         }
         search();
     }
 
     public void search() {
         try {
-            reservations = ReservationRestClient.search(userId, roomId, archived);
+            reservations = reservationRestClient.search(userId, roomId, archived);
         }
         catch (Exception e) {
             reservations = new ArrayList<>();
@@ -50,7 +55,7 @@ public class ReservationListBean {
 
     private void getAllReservations() {
         try {
-            reservations = ReservationRestClient.getAll();
+            reservations = reservationRestClient.getAll();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -59,7 +64,7 @@ public class ReservationListBean {
 
     public void endReservation(Reservation reservation) {
         try {
-            ReservationRestClient.endReservation(reservation.getId());
+            reservationRestClient.endReservation(reservation.getId());
         }
         catch (Exception e) {
             e.printStackTrace();

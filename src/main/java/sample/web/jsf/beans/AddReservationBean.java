@@ -5,13 +5,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import sample.web.jsf.model.Reservation;
 import sample.web.jsf.restclient.ReservationRestClient;
-import sample.web.jsf.restclient.RestClient;
-import sample.web.jsf.utils.JwtUtils;
+import sample.web.jsf.utils.JwtStore;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 import java.io.Serializable;
 import java.util.UUID;
@@ -21,6 +19,12 @@ import java.util.UUID;
 @NoArgsConstructor
 public class AddReservationBean implements Serializable {
 
+    @Inject
+    private JwtStore jwtStore;
+
+    @Inject
+    private ReservationRestClient reservationRestClient;
+
     @Getter
     private final Reservation reservation = new Reservation();
 
@@ -28,7 +32,7 @@ public class AddReservationBean implements Serializable {
     private String roomId = "";
 
     @Getter @Setter
-    private String userId = JwtUtils.getUserId();
+    private String userId = jwtStore.getUserId();
 
 
     public String save() {
@@ -37,7 +41,7 @@ public class AddReservationBean implements Serializable {
             UUID userActualId = UUID.fromString(userId);
 
 
-        Response response = ReservationRestClient.create(userActualId, roomActualId, reservation);
+        Response response = reservationRestClient.create(userActualId, roomActualId, reservation);
 
         if (response.getStatus() == 201) {
             return "reservationList";

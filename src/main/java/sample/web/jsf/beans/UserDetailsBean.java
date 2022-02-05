@@ -10,6 +10,7 @@ import sample.web.jsf.restclient.RestClient;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.core.GenericType;
 import java.io.Serializable;
@@ -21,6 +22,9 @@ import java.util.List;
 @NoArgsConstructor
 public class UserDetailsBean implements Serializable {
 
+    @Inject
+    private ReservationRestClient reservationRestClient;
+
     @Getter @Setter
     private User user;
 
@@ -31,7 +35,7 @@ public class UserDetailsBean implements Serializable {
         try {
 
             String userId = user.getId().toString();
-            return ReservationRestClient.search(userId, "", true);
+            return reservationRestClient.search(userId, "", true);
         }
         catch (Exception e) {
             e.printStackTrace();

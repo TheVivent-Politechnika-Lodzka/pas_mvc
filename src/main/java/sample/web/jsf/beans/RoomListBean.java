@@ -21,6 +21,9 @@ import java.util.UUID;
 public class RoomListBean {
 
     @Inject
+    private HotelRoomRestClient hotelRoomRestClient;
+
+    @Inject
     private EditRoomBean editRoomBean;
 
     @Getter
@@ -48,13 +51,13 @@ public class RoomListBean {
     }
 
     public void getAllRooms() {
-        roomList = HotelRoomRestClient.getAll();
+        roomList = hotelRoomRestClient.getAll();
     }
 
     public void deleteRoom(){
         String id = ContextUtils.getRequestParams().get("deleteRoomId");
 
-        HotelRoomRestClient.delete(UUID.fromString(id));
+        hotelRoomRestClient.delete(UUID.fromString(id));
         getAllRooms();
     }
 
@@ -66,14 +69,14 @@ public class RoomListBean {
 
         try {
             UUID id = UUID.fromString(searchString);
-            HotelRoom room = HotelRoomRestClient.getById(id);
+            HotelRoom room = hotelRoomRestClient.getById(id);
             roomList.clear();
             roomList.add(room);
             return;
         } catch (Exception e){}
         try {
             int number = Integer.parseInt(searchString);
-            HotelRoom room = HotelRoomRestClient.getByNumber(number);
+            HotelRoom room = hotelRoomRestClient.getByNumber(number);
             roomList.clear();
             roomList.add(room);
             return;
