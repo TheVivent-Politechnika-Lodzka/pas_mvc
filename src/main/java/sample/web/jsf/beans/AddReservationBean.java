@@ -7,6 +7,7 @@ import sample.web.jsf.model.Reservation;
 import sample.web.jsf.restclient.ReservationRestClient;
 import sample.web.jsf.utils.JwtStore;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,7 +33,12 @@ public class AddReservationBean implements Serializable {
     private String roomId = "";
 
     @Getter @Setter
-    private String userId = jwtStore.getUserId();
+    private String userId = "";
+
+    @PostConstruct
+    public void init() {
+        userId = jwtStore.getUserId();
+    }
 
 
     public String save() {

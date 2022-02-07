@@ -23,30 +23,55 @@ public class ReservationRestClient {
 
     public Reservation getById(UUID id) {
         String idStr = id.toString();
-        return restClient.target("reservation/" + idStr).request()
+        return restClient.target("reservation/get/id" + idStr).request()
                 .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(Reservation.class);
     }
 
     public Response create(UUID userId, UUID roomId, Reservation reservation) {
-        Response response = restClient.target("reservation/" + userId + "/" + roomId)
-                .request()
-                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer())
-                .post(Entity.json(reservation));
+        Response response;
+        if ("CLIENT".equals(jwtStore.getRole())){
+            response = restClient.target("reservation/create/logged/" + roomId)
+                    .request()
+                    .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer())
+                    .post(Entity.json(reservation));
+        }
+        else {
+            response = restClient.target("reservation/create/for/" + userId + "/" + roomId)
+                    .request()
+                    .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer())
+                    .post(Entity.json(reservation));
+        }
+
+        System.out.println("Response: " + response.getStatus());
+
         return response;
     }
 
     public List<Reservation> getAll() {
-        return restClient.target("reservation/all").request()
+        return restClient.target("reservation/get/all").request()
                 .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(new GenericType<List<Reservation>>(){});
     }
 
     public List<Reservation> search(String userId, String roomId, boolean includeArchived){
-        return restClient.target("reservation/search")
-                .queryParam("clientId", userId)
-                .queryParam("roomId", roomId)
-                .queryParam("archived", includeArchived)
-                .request()
-                .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(new GenericType<List<Reservation>>() {});
+        List<Reservation> response;
+        if ("CLIENT".equals(jwtStore.getRole())){
+            response = restClient.target("reservation/search/logged")
+                    .queryParam("roomId", roomId)
+                    .queryParam("archived", includeArchived)
+                    .request()
+                    .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer())
+                    .get(new GenericType<List<Reservation>>() {});
+        }else {
+
+            response = restClient.target("reservation/search/admin")
+                    .queryParam("clientId", userId)
+                    .queryParam("roomId", roomId)
+                    .queryParam("archived", includeArchived)
+                    .request()
+                    .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer())
+                    .get(new GenericType<List<Reservation>>() {});
+        }
+        return response;
     }
 
     public Response endReservation(UUID id) {

@@ -22,34 +22,34 @@ public class HotelRoomRestClient {
 
 
     public HotelRoom getById(UUID id) {
-        return restClient.target("room/" + id.toString()).request()
+        return restClient.target("room/get/id/" + id.toString()).request()
                 .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(HotelRoom.class);
     }
 
     public HotelRoom getByNumber(int number) {
-        return restClient.target("room/number/" + number).request()
+        return restClient.target("room/get/number/" + number).request()
                 .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(HotelRoom.class);
     }
 
     public Response delete(UUID id) {
-        return restClient.target("room/" + id.toString()).request()
+        return restClient.target("room/delete/" + id.toString()).request()
                 .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).delete();
     }
 
     public List<HotelRoom> getAll() {
 
-        return restClient.target("room/all").request()
+        return restClient.target("room/get/all").request()
                 .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).get(new GenericType<List<HotelRoom>>(){});
     }
 
     public Response update(HotelRoom room) {
         String idStr = room.getId().toString();
-        return restClient.target("room/" + idStr ).request()
+        return restClient.target("room/update/" + idStr ).request()
                 .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).post(Entity.json(room));
     }
 
     public Response create(HotelRoom room) {
-        return restClient.target("room").request()
+        return restClient.target("room/create").request()
                 .header(RestClient.AUTHORIZATION_HEADER, jwtStore.getTokenWithBearer()).post(Entity.json(room));
     }
 
