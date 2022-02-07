@@ -29,6 +29,29 @@
     <security-role>
         <role-name>RESOURCE_ADMIN</role-name>
     </security-role>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>addReservation</web-resource-name>
+            <url-pattern>/faces/addReservation.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER_ADMIN</role-name>
+            <role-name>RESOURCE_ADMIN</role-name>
+            <role-name>CLIENT</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>addRoom</web-resource-name>
+            <url-pattern>/faces/addRoom.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>RESOURCE_ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>addUser</web-resource-name>
@@ -38,16 +61,109 @@
             <role-name>USER_ADMIN</role-name>
         </auth-constraint>
     </security-constraint>
-<!--    <login-config>-->
-<!--        <auth-method>FORM</auth-method>-->
-<!--        <realm-name>file</realm-name>-->
-<!--        <form-login-config>-->
-<!--            <form-login-page>/login.xhtml</form-login-page>-->
-<!--            <form-error-page>/start.xhtml</form-error-page>-->
-<!--        </form-login-config>-->
-<!--    </login-config>-->
-    
-    
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>editRoom</web-resource-name>
+            <url-pattern>/faces/editRoom.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>RESOURCE_ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>editUser</web-resource-name>
+            <url-pattern>/faces/editUser.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER_ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>login</web-resource-name>-->
+<!--            <url-pattern>/faces/login.xhtml</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--    </security-constraint>-->
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>reservationlist</web-resource-name>
+            <url-pattern>/faces/reservationlist.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER_ADMIN</role-name>
+            <role-name>RESOURCE_ADMIN</role-name>
+            <role-name>CLIENT</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>roomlist</web-resource-name>
+            <url-pattern>/faces/roomlist.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER_ADMIN</role-name>
+            <role-name>RESOURCE_ADMIN</role-name>
+            <role-name>CLIENT</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <!--    <security-constraint>-->
+    <!--        <web-resource-collection>-->
+    <!--            <web-resource-name>start</web-resource-name>-->
+    <!--            <url-pattern>/faces/start.xhtml</url-pattern>-->
+    <!--        </web-resource-collection>-->
+    <!--    </security-constraint>-->
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>userList</web-resource-name>
+            <url-pattern>/faces/userList.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER_ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>userSettings</web-resource-name>
+            <url-pattern>/faces/userSettings.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER_ADMIN</role-name>
+            <role-name>RESOURCE_ADMIN</role-name>
+            <role-name>CLIENT</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>viewRoom</web-resource-name>
+            <url-pattern>/faces/viewRoom.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER_ADMIN</role-name>
+            <role-name>RESOURCE_ADMIN</role-name>
+            <role-name>CLIENT</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>viewUser</web-resource-name>
+            <url-pattern>/faces/viewUser.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER_ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
