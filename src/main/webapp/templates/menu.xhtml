@@ -101,7 +101,7 @@
             <h:form>
                 <li class="mb-2 text-center">
                     <h:commandButton class="btn btn-primary"
-                                     value="Settings"
+                                     value="${msg['menu.button.settings']}"
                                      action="#{utilsBean.userSettings}"
                                      rendered="#{utilsBean.logedIn}"/>
                 </li>
@@ -109,12 +109,12 @@
 
                     <h:commandButton class="btn btn-danger"
                                      rendered="#{utilsBean.logedIn}"
-                                     value="Logout"
+                                     value="${msg['menu.button.logout']}"
                                      action="#{utilsBean.invalidateSession}" />
 
-                    <h:commandButton class="btn btn-danger"
+                    <h:commandButton class="btn btn-success"
                                      rendered="#{not utilsBean.logedIn}"
-                                     value="Log in"
+                                     value="${msg['menu.button.login']}"
                                      action="/login.xhtml" />
                 </li>
             </h:form>
