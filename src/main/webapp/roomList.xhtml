@@ -55,8 +55,10 @@
                                 <th scope="col">#{msg['roomList.table.number']}</th>
                                 <th scope="col">#{msg['roomList.table.capacity']}</th>
                                 <th scope="col">#{msg['roomList.table.price']}</th>
-                                <th scope="col">#{msg['roomList.table.remove']}</th>
-                                <th scope="col">#{msg['roomList.table.edit']}</th>
+                                <f:subview id="delAndEdi" rendered="#{utilsBean.isUserInRole('RESOURCE_ADMIN')}">
+                                    <th scope="col">#{msg['roomList.table.remove']}</th>
+                                    <th scope="col">#{msg['roomList.table.edit']}</th>
+                                </f:subview>
                                 <th scope="col">#{msg['roomList.table.roomDetails']}</th>
                             </tr>
                         </thead>
@@ -68,18 +70,20 @@
                                         <td>${room.roomNumber}</td>
                                         <td>${room.capacity}</td>
                                         <td>${room.price}</td>
-                                        <td>
-                                            <h:commandButton class="btn btn-danger"
-                                                             action="#{roomListBean.deleteRoom()}"
-                                                             value="#{msg['roomList.table.removeButton']}">
-                                                <f:param name="deleteRoomId" value="${room.id}" />
-                                            </h:commandButton>
-                                        </td>
-                                        <td>
-                                            <h:commandButton class="btn btn-success"
-                                                             action="#{roomListBean.editRoom(room)}"
-                                                             value="#{msg['roomList.table.editButton']}" />
-                                        </td>
+                                        <f:subview id="delAndEdiButt" rendered="#{utilsBean.isUserInRole('RESOURCE_ADMIN')}">
+                                            <td>
+                                                <h:commandButton class="btn btn-danger"
+                                                                 action="#{roomListBean.deleteRoom()}"
+                                                                 value="#{msg['roomList.table.removeButton']}">
+                                                    <f:param name="deleteRoomId" value="${room.id}" />
+                                                </h:commandButton>
+                                            </td>
+                                            <td>
+                                                <h:commandButton class="btn btn-success"
+                                                                 action="#{roomListBean.editRoom(room)}"
+                                                                 value="#{msg['roomList.table.editButton']}" />
+                                            </td>
+                                        </f:subview>
                                         <td>
                                             <h:commandButton class="btn btn-primary"
                                                              action="#{roomListBean.roomDetails(room)}"

@@ -64,6 +64,4 @@ public class UtilsBean {
         return xxx.equals(jwtStore.getRole());
     }
 
-
-
 }

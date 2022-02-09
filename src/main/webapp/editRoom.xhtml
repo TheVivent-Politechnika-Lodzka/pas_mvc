@@ -26,11 +26,11 @@
 
 
     <ui:define name="content">
-        <div class="container text-light" style="background: #00000088;">
-
+        <div class="container text-light">
             <div class="row">
-                <div class="col-12">
-                    <h:form class="text-dark">
+                <p class="fs-1 text-center mt-4">${msg['editRoom.breadcrumb']}</p>
+                <div class="col-12 pt-0 mt-0">
+                    <h:form class="text-dark pt-0 mt-0">
                         <div class="container-fluid">
                             <div class="row mt-3">
                                 <div class="col-12 text-light">
@@ -73,13 +73,24 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-floating mb-3">
-                                        <h:inputTextarea class="form-control" id="roomDescription" placeholder="${msg['editRoom.description']}" value="#{editRoomBean.room.description}" required="true"/>
+                                        <h:inputTextarea class="form-control"
+                                                         id="roomDescription"
+                                                         placeholder="${msg['editRoom.description']}"
+                                                         value="#{editRoomBean.room.description}"
+                                                         required="true"/>
                                         <label for="roomDescription">${msg['editRoom.description']}</label>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <h:commandButton class="btn btn-success" value="${msg['editRoom.saveButton']}" action="#{editRoomBean.save}" />
-                                </div>
+                            </div>
+                            <div class="float-end mb-4">
+                                <h:commandButton class="btn btn-success me-2"
+                                                 value="${msg['editRoom.saveButton']}"
+                                                 action="#{editRoomBean.save}" />
+                                <h:commandButton
+                                        class="btn btn-warning"
+                                        value="Anuluj"
+                                        action="roomList.xhtml"
+                                />
                             </div>
                         </div>
                     </h:form>
