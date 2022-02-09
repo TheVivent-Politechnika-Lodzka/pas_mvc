@@ -55,7 +55,7 @@
                                 <th scope="col">#{msg['roomList.table.number']}</th>
                                 <th scope="col">#{msg['roomList.table.capacity']}</th>
                                 <th scope="col">#{msg['roomList.table.price']}</th>
-                                <f:subview id="delAndEdi" rendered="#{utilsBean.isUserInRole('RESOURCE_ADMIN')}">
+                                <f:subview id="delAndEdi" rendered="#{request.isUserInRole('RESOURCE_ADMIN')}">
                                     <th scope="col">#{msg['roomList.table.remove']}</th>
                                     <th scope="col">#{msg['roomList.table.edit']}</th>
                                 </f:subview>
@@ -70,7 +70,7 @@
                                         <td>${room.roomNumber}</td>
                                         <td>${room.capacity}</td>
                                         <td>${room.price}</td>
-                                        <f:subview id="delAndEdiButt" rendered="#{utilsBean.isUserInRole('RESOURCE_ADMIN')}">
+                                        <f:subview id="delAndEdiButt" rendered="#{request.isUserInRole('RESOURCE_ADMIN')}">
                                             <td>
                                                 <h:commandButton class="btn btn-danger"
                                                                  action="#{roomListBean.deleteRoom()}"

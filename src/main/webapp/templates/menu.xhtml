@@ -19,7 +19,8 @@
             <li class="nav-item">
                 <h:outputLink class="nav-link" value="start.xhtml">PAS</h:outputLink>
             </li>
-            <f:subview id="nbud" rendered="#{utilsBean.isUserInRole('USER_ADMIN')}">
+
+            <f:subview id="nbud" rendered="#{request.isUserInRole('USER_ADMIN')}">
 
                 <li class="nav-item dropdown" >
                     <a class="nav-link dropdown-toggle"
@@ -61,7 +62,7 @@
                         <li>
                             <h:outputLink class="dropdown-item"
                                           value="addRoom.xhtml"
-                                          rendered="#{utilsBean.isUserInRole('RESOURCE_ADMIN')}">
+                                          rendered="#{request.isUserInRole('RESOURCE_ADMIN')}">
                                 Dodaj
                             </h:outputLink>
                         </li>

@@ -82,10 +82,10 @@
                                 <th scope="col">#{msg['reservationList.table.userLogin']}</th>
                                 <th scope="col">#{msg['reservationList.table.roomNumber']}</th>
                                 <th scope="col">#{msg['reservationList.table.status']}</th>
-                                <f:subview id="endReserUA" rendered="#{utilsBean.isUserInRole('USER_ADMIN')}">
+                                <f:subview id="endReserUA" rendered="#{request.isUserInRole('USER_ADMIN')}">
                                     <th scope="col">#{msg['reservationList.table.end']}</th>
                                 </f:subview>
-                                <f:subview id="endReserRA" rendered="#{utilsBean.isUserInRole('RESOURCE_ADMIN')}">
+                                <f:subview id="endReserRA" rendered="#{request.isUserInRole('RESOURCE_ADMIN')}">
                                     <th scope="col">#{msg['reservationList.table.end']}</th>
                                 </f:subview>
                             </tr>
@@ -106,7 +106,7 @@
                                             msg['reservationList.table.isActive'] :
                                             msg['reservationList.table.isNonActive']}</td>
 
-                                        <f:subview id="endReserButtUA" rendered="#{utilsBean.isUserInRole('USER_ADMIN')}">
+                                        <f:subview id="endReserButtUA" rendered="#{request.isUserInRole('USER_ADMIN')}">
                                             <td>
                                                 <h:commandButton
                                                         class="btn btn-primary"
@@ -117,7 +117,7 @@
                                             </td>
                                         </f:subview>
 
-                                        <f:subview id="endReserButtRU" rendered="#{utilsBean.isUserInRole('RESOURCE_ADMIN')}">
+                                        <f:subview id="endReserButtRU" rendered="#{request.isUserInRole('RESOURCE_ADMIN')}">
                                             <td>
                                                 <h:commandButton
                                                         class="btn btn-primary"
