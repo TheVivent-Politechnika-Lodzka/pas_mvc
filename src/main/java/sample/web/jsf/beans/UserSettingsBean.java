@@ -28,11 +28,13 @@ public class UserSettingsBean implements Serializable {
     private String passwordRepeat;
 
     public String save() {
+
         if (user == null) {
             throw new IllegalStateException("Proba ominiecia listy");
         }
 
-        if (!(getPasswordRepeat().equals(user.getPassword()))){
+        if (!(passwordRepeat.equals(user.getPassword()))){
+            user = null;
             passwordRepeat = "";
             return "";
         }
@@ -41,9 +43,9 @@ public class UserSettingsBean implements Serializable {
             user.setPassword(null);
         }
 
-
         Response res = userRestClient.update(user);
         user = null;
+
 
         if (res.getStatus() != 200) {
             throw new IllegalStateException("Nie udało się zapisać użytkownika");

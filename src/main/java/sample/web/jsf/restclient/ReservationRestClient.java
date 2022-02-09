@@ -42,8 +42,6 @@ public class ReservationRestClient {
                     .post(Entity.json(reservation));
         }
 
-        System.out.println("Response: " + response.getStatus());
-
         return response;
     }
 
